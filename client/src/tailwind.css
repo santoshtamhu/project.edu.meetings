@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .container {
+    @apply w-[1292px] mx-auto;
+  }
+  .active {
+    @apply text-yellow-500;
+  }
+}
