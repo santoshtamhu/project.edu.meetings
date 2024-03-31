@@ -7,14 +7,30 @@ export default function Navbar() {
       const mainNavbar = document.querySelector(".main-navbar");
       const secNavbar = document.querySelector(".sec-navbar");
       if (mainNavbar) {
-        if (window.scrollY > 0) {
-          mainNavbar.classList.add("top-0", "text-black");
+        if (window.scrollY > 600) {
+          mainNavbar.classList.add(
+            "text-black",
+            "fixed",
+            "transition-all",
+            "duration-700",
+            "top-10",
+            "transform",
+            "-translate-y-1/2"
+          );
           mainNavbar.classList.remove("bg-opacity-15");
           secNavbar.classList.add("h-20");
           secNavbar.classList.remove("h-24");
         } else {
           mainNavbar.classList.add("bg-opacity-15");
-          mainNavbar.classList.remove("top-0", "text-black");
+          mainNavbar.classList.remove(
+            "text-black",
+            "fixed",
+            "transition-all",
+            "duration-700",
+            "top-10",
+            "transform",
+            "-translate-y-1/2"
+          );
           secNavbar.classList.add("h-24");
           secNavbar.classList.remove("h-20");
         }
@@ -28,7 +44,7 @@ export default function Navbar() {
     };
   }, []);
   return (
-    <div className="bg-white w-full bg-opacity-15 main-navbar transition-all duration-700 text-white fixed z-20">
+    <div className="w-full bg-white bg-opacity-15 main-navbar text-white ">
       <div className="container h-24 items-center sec-navbar font-poppins flex justify-between">
         <div className="text-[28px] tracking-wider font-bold ">EDU MEETING</div>
         <menu>
