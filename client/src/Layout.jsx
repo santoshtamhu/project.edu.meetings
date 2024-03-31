@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 
 export default function () {
   return (
-    <div className="bg-slate-700">
+    <div className="bg-[url('/bg-image/meetings-bg.jpg')] font-poppins bg-cover bg-fixed ">
       <Headingbar />
       <Navbar />
       <Outlet />

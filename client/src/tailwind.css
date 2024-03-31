@@ -9,4 +9,7 @@
   .active {
     @apply text-yellow-500;
   }
+  .btn {
+    @apply text-white border-0 bg-customRed rounded-3xl px-[30px] text-[13px] font-medium py-3;
+  }
 }

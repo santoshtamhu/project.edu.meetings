@@ -8,6 +8,7 @@ export default {
       },
       colors: {
         customGray: "#1f272b",
+        customRed: "#a12c2f",
       },
     },
   },
