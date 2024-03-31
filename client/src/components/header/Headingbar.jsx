@@ -8,12 +8,12 @@ import {
 export default function Headingbar() {
   return (
     <div className="bg-customGray">
-      <div className="container text-white items-center flex justify-between h-10">
-        <div className="font-poppins text-[13px]">
+      <div className="container w-full text-white items-center justify-center flex md:justify-between h-10">
+        <div className="hidden md:block font-poppins text-[13px]">
           The lake sparkled. <span className="text-yellow-500">Birds sang</span>
           . A peaceful escape.
         </div>
-        <div>
+        <divs>
           <ul className="flex gap-5">
             <li>
               <FaFacebookF />
@@ -28,7 +28,7 @@ export default function Headingbar() {
               <FaLinkedinIn />
             </li>
           </ul>
-        </div>
+        </divs>
       </div>
     </div>
   );
