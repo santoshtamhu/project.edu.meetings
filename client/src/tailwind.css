@@ -4,7 +4,22 @@
 
 @layer components {
   .container {
-    @apply w-[1292px] mx-auto;
+    @apply w-[320px] mx-auto;
+  }
+  .smContainer {
+    @apply w-[540px] mx-auto;
+  }
+  .mdContainer {
+    @apply w-[696px] mx-auto;
+  }
+  .lgContainer {
+    @apply w-[936px] mx-auto;
+  }
+  .xlContainer {
+    @apply w-[1116px] mx-auto;
+  }
+  .xxlContainer {
+    @apply w-[1296px] mx-auto;
   }
   .active {
     @apply text-yellow-500;

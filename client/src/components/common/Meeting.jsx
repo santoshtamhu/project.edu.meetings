@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function Meeting() {
-  return (
-    <div>Meeting</div>
-  )
+  return <div>Meeting</div>;
 }

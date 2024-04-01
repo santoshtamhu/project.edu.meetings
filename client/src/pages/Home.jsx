@@ -7,6 +7,10 @@ export default function Home() {
     <div>
       <Hero />
       <Highlights />
+      <Highlights />
+      <Highlights />
+      <Highlights />
+      <Highlights />
     </div>
   );
 }

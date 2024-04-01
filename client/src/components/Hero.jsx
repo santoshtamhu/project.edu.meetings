@@ -4,12 +4,20 @@ export default function Hero() {
   return (
     <div>
       <div className="relative text-white">
-        <video autoPlay muted loop>
-          <source src={backgroundVideo} type="video/mp4" />
-        </video>
-        <div className="w-full h-full top-0  bg-[rgba(31,39,43,0.75)] absolute"></div>
-        <div className="container">
-          <div className="flex absolute top-64 flex-col gap-5">
+        <div className="relative">
+          <video
+            autoPlay
+            muted
+            loop
+            className="top-0 left-0 h-screen w-full  object-cover"
+          >
+            <source src={backgroundVideo} type="video/mp4" />
+          </video>
+          <div className="w-full h-full top-0  bg-[rgba(31,39,43,0.75)] absolute"></div>
+        </div>
+
+        <div className=" absolute w-full top-64 ">
+          <div className="flex flex-col gap-5 container sm:smContainer 2xl:xxlContainer md:mdContainer xl:xlContainer lg:lgContainer ">
             <div className="font-semibold tracking-wider uppercase">
               Hello Students
             </div>
