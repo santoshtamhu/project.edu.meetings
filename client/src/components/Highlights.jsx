@@ -51,7 +51,7 @@ export default function Highlights() {
       <Slider {...settings}>
         {highlights.map((item) => {
           return (
-            <div>
+            <div key={item.title}>
               <div className="container bg-customRed p-10 flex flex-col gap-4 text-center items-center text-white h-full rounded-3xl">
                 <div>
                   <img src={item.image} alt="" />

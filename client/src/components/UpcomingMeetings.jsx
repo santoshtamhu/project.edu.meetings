@@ -21,7 +21,7 @@ export default function UpcomingMeetings() {
     <div>
       <h1 className="uppercase my-14 text-white text-xl font-bold text-center">
         Upcoming Meetings
-        <hr className="container md:mdContainer lg:lgContainer border-white border-opacity-15 mt-6" />
+        <hr className="container md:mdContainer xl:xlContainer 2xl:xxlContainer lg:lgContainer border-white border-opacity-15 mt-6" />
       </h1>
       <div className="lg:lgContainer container md:mdContainer xl:xlContainer 2xl:xxlContainer lg:grid lg:gap-16 grid-cols-3">
         <div className="mb-8 col-span-1">
@@ -31,8 +31,8 @@ export default function UpcomingMeetings() {
           <div className="lg:grid lg:gap-5 grid-cols-2">
             {meetings.map((el) => {
               return (
-                <div>
-                  <Meeting key={el._id} meeting={el} />;
+                <div key={el._id}>
+                  <Meeting meeting={el} />;
                 </div>
               );
             })}
