@@ -33,11 +33,15 @@ export default function Navbar() {
           "md:-translate-y-1/2",
           "-translate-y-full"
         );
-        mainNavbar.classList.remove("md:bg-opacity-15", "text-white");
+        mainNavbar.classList.remove("md:bg-opacity-15", "md:text-white");
         secNavbar.classList.add("md:h-20");
         secNavbar.classList.remove("md:h-24");
       } else {
-        mainNavbar.classList.add("md:bg-opacity-15", "text-black");
+        mainNavbar.classList.add(
+          "md:bg-opacity-15",
+          "text-black",
+          "md:text-white"
+        );
         mainNavbar.classList.remove(
           "md:text-black",
           "fixed",
