@@ -1,11 +1,15 @@
 const express = require("express");
 const meetingsRoute = require("./routers/meetings");
 const coursesRoute = require("./routers/courses");
+const cors = require("cors");
 const app = express();
 const port = 8000;
 
 //mongodb database
 require("./config/database");
+
+//cors
+app.use(cors());
 
 //req.body
 app.use(express.json());
