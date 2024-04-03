@@ -25,7 +25,7 @@ export default function Navbar() {
 
       if (window.scrollY > 600) {
         mainNavbar.classList.add(
-          "md:text-black",
+          "lg:text-black",
           "fixed",
           "transition-all",
           "duration-700",
@@ -33,17 +33,17 @@ export default function Navbar() {
           "md:-translate-y-1/2",
           "-translate-y-full"
         );
-        mainNavbar.classList.remove("md:bg-opacity-15", "md:text-white");
+        mainNavbar.classList.remove("lg:bg-opacity-15", "lg:text-white");
         secNavbar.classList.add("md:h-20");
         secNavbar.classList.remove("md:h-24");
       } else {
         mainNavbar.classList.add(
-          "md:bg-opacity-15",
+          "lg:bg-opacity-15",
           "text-black",
-          "md:text-white"
+          "lg:text-white"
         );
         mainNavbar.classList.remove(
-          "md:text-black",
+          "lg:text-black",
           "fixed",
           "transform",
           "md:-translate-y-1/2",
@@ -61,13 +61,13 @@ export default function Navbar() {
     };
   }, []);
   return (
-    <div className="w-full bg-white md:bg-opacity-15 main-navbar md:text-white">
+    <div className="w-full bg-white lg:bg-opacity-15 main-navbar lg:text-white">
       <div className="md:h-24 md:mdContainer sm:smContainer lg:lgContainer xl:xlContainer 2xl:xxlContainer items-center sec-navbar font-poppins flex justify-around md:justify-between">
         <div className="text-[28px] tracking-wider font-bold">
           <Link to="/">EDU MEETING</Link>
         </div>
 
-        <button onClick={toggleMenu} className="md:hidden">
+        <button onClick={toggleMenu} className="lg:hidden">
           {!isOpen ? (
             <CgMenuLeft className="size-8" />
           ) : (
@@ -79,7 +79,7 @@ export default function Navbar() {
         <menu
           className={`${
             isOpen ? "block" : "hidden"
-          } md:hidden absolute container sm:smContainer bg-white top-[42px]`}
+          } absolute container sm:smContainer bg-white top-[42px]`}
         >
           <ul>
             {menuItems.map((item) => {
@@ -103,7 +103,7 @@ export default function Navbar() {
         </menu>
 
         {/* menu for larger screens */}
-        <menu className="hidden md:block">
+        <menu className="hidden lg:block">
           <ul className="flex gap-7 text-[14px] uppercase font-medium tracking-wider">
             {menuItems.map((item) => {
               return (

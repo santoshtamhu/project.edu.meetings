@@ -21,9 +21,9 @@ export default function UpcomingMeetings() {
     <div>
       <h1 className="uppercase my-14 text-white text-xl font-bold text-center">
         Upcoming Meetings
-        <hr className="container md:mdContainer xl:xlContainer 2xl:xxlContainer lg:lgContainer border-white border-opacity-15 mt-6" />
+        <hr className=" border-white border-opacity-15 mt-6" />
       </h1>
-      <div className="lg:lgContainer container md:mdContainer xl:xlContainer 2xl:xxlContainer lg:grid lg:gap-16 grid-cols-3">
+      <div className="lg:lgContainer container md:mdContainer sm:smContainer xl:xlContainer 2xl:xxlContainer lg:grid lg:gap-16 grid-cols-3">
         <div className="mb-8 col-span-1">
           <MeetingCategories />
         </div>

@@ -37,7 +37,7 @@ export default function QuickInfo() {
 
   return (
     <>
-      <div className="bg-white container lg:ml-7 md:mdContainer flex flex-col gap-6 p-10 rounded-3xl mt-8 lg:mt-0">
+      <div className="bg-white container sm:smContainer lg:ml-7 md:mdContainer flex flex-col gap-6 p-10 rounded-3xl mt-8 lg:mt-0">
         {infos.map((info, index) => {
           return (
             <div key={index}>

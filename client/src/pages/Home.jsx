@@ -8,8 +8,12 @@ import QuickInfo from "../components/QuickInfo";
 export default function Home() {
   return (
     <div>
-      <Hero />
-      <Highlights />
+      <div className="relative mb-52">
+        <Hero />
+        <div className="absolute -bottom-36 lg:-bottom-28 right-auto left-1/2 -translate-x-1/2">
+          <Highlights />
+        </div>
+      </div>
       <UpcomingMeetings />
       <div className="lg:flex lg:gap-10 lg:lgContainer xl:xlContainer 2xl:xxlContainer">
         <CTA />
