@@ -15,9 +15,11 @@ export default function Home() {
         </div>
       </div>
       <UpcomingMeetings />
-      <div className="lg:flex lg:gap-10 lg:lgContainer xl:xlContainer 2xl:xxlContainer">
-        <CTA />
-        <QuickInfo />
+      <div className="bg-[url('bg-image/apply-bg.jpg')] bg-center bg-cover bg-fixed py-36 mt-10">
+        <div className=" lg:grid lg:grid-cols-2 lg:gap-14 lg:lgContainer xl:xlContainer 2xl:xxlContainer">
+          <CTA />
+          <QuickInfo />
+        </div>
       </div>
     </div>
   );

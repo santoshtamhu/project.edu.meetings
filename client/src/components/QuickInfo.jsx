@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { FaChevronDown, FaChevronRight } from "react-icons/fa";
 
 export default function QuickInfo() {
-  const [isExpanded, setIsExpanded] = useState({});
+  let initialStates = {
+    0: true,
+  };
+  const [isExpanded, setIsExpanded] = useState(initialStates);
   let infos = [
     {
       title: "About EDU Meeting",
@@ -33,11 +36,9 @@ export default function QuickInfo() {
     });
   };
 
-  // made responsive till lg, make responsive from xl
-
   return (
     <>
-      <div className="bg-white container sm:smContainer lg:ml-7 md:mdContainer flex flex-col gap-6 p-10 rounded-3xl mt-8 lg:mt-0">
+      <div className="bg-white container sm:smContainer md:mdContainer lg:w-full flex flex-col gap-6 p-10 rounded-3xl mt-8 lg:mt-0">
         {infos.map((info, index) => {
           return (
             <div key={index}>
@@ -54,7 +55,7 @@ export default function QuickInfo() {
               <p
                 className={`${
                   isExpanded[index] ? "block" : "hidden"
-                } text-[14px] leading-6 lg:w-64 mt-3`}
+                } text-[14px] leading-6 lg:w-64 xl:w-full xl:pr-8 mt-3`}
               >
                 {info.description}
               </p>
