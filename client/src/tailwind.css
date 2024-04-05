@@ -6,7 +6,6 @@
 @import "slick-carousel/slick/slick-theme.css";
 
 @layer components {
- 
   .container {
     @apply w-[320px] mx-auto;
   }
@@ -28,7 +27,11 @@
   .active {
     @apply text-yellow-500;
   }
+
+  .form-control {
+    @apply bg-slate-100 rounded-3xl px-4 py-[10px] uppercase mb-7 w-full text-[13px];
+  }
   .btn {
-    @apply text-white border-0 bg-customRed rounded-3xl px-[30px] text-[13px] font-medium py-3;
+    @apply text-white border-0 bg-customRed w-full rounded-3xl px-[30px] text-[13px] font-medium py-3;
   }
 }

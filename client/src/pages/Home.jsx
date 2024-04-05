@@ -4,6 +4,7 @@ import Highlights from "../components/Highlights";
 import UpcomingMeetings from "../components/UpcomingMeetings";
 import CTA from "../components/CTA";
 import QuickInfo from "../components/QuickInfo";
+import ContactForm from "../components/ContactForm";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
           <QuickInfo />
         </div>
       </div>
+      <ContactForm />
     </div>
   );
 }
