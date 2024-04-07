@@ -37,7 +37,7 @@ export default function Hero() {
               .
             </div>
             <div>
-              <button className="btn">JOIN US NOW!</button>
+              <button className="btn w-40">JOIN US NOW!</button>
             </div>
           </div>
         </div>
