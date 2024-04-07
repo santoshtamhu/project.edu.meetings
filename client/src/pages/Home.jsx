@@ -5,6 +5,7 @@ import UpcomingMeetings from "../components/UpcomingMeetings";
 import CTA from "../components/CTA";
 import QuickInfo from "../components/QuickInfo";
 import ContactForm from "../components/ContactForm";
+import { ContactInfo } from "../components/ContactInfo";
 
 export default function Home() {
   return (
@@ -22,7 +23,14 @@ export default function Home() {
           <QuickInfo />
         </div>
       </div>
-      <ContactForm />
+      <div className="container sm:smContainer md:mdContainer lg:lgContainer xl:xlContainer 2xl:xxlContainer lg:flex mt-8 lg:gap-8 items-center">
+        <div className="flex-grow">
+          <ContactForm />
+        </div>
+        <div>
+          <ContactInfo />
+        </div>
+      </div>
     </div>
   );
 }

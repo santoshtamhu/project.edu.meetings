@@ -29,9 +29,12 @@
   }
 
   .form-control {
-    @apply bg-slate-100 rounded-3xl px-4 py-[10px] uppercase mb-7 w-full text-[13px];
+    @apply bg-slate-100 rounded-3xl px-4 py-[10px] uppercase mb-6 w-full text-[13px];
   }
   .btn {
     @apply text-white border-0 bg-customRed w-full rounded-3xl px-[30px] text-[13px] font-medium py-3;
+  }
+  .contactInfoSecondaryFont {
+    @apply text-[18px] font-bold;
   }
 }
