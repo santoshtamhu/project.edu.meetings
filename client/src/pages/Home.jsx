@@ -6,6 +6,7 @@ import CTA from "../components/CTA";
 import QuickInfo from "../components/QuickInfo";
 import ContactForm from "../components/ContactForm";
 import { ContactInfo } from "../components/ContactInfo";
+import QuickFacts from "../components/QuickFacts";
 
 export default function Home() {
   return (
@@ -17,12 +18,14 @@ export default function Home() {
         </div>
       </div>
       <UpcomingMeetings />
-      <div className="bg-[url('bg-image/apply-bg.jpg')] bg-center bg-cover bg-fixed py-36 mt-10">
+      <div className="bg-[url('bg-image/apply-bg.jpg')]    py-36 mt-10">
         <div className="lg:grid lg:grid-cols-2 lg:gap-14 lg:lgContainer xl:xlContainer 2xl:xxlContainer">
           <CTA />
           <QuickInfo />
         </div>
       </div>
+
+      <QuickFacts />
 
       {/* Contact Form and Contact Info Container */}
       <div className="container sm:smContainer md:mdContainer lg:lgContainer xl:xlContainer 2xl:xxlContainer lg:flex mt-8 lg:gap-8 items-center">

@@ -37,4 +37,13 @@
   .contactInfoSecondaryFont {
     @apply text-[18px] font-bold;
   }
+  .quick-fact {
+    @apply border-0 rounded-[20px] bg-white my-6 lg:my-0 lg:flex lg:flex-col justify-center bg-opacity-15 py-8 flex flex-col items-center gap-2;
+  }
+  .quick-fact-number {
+    @apply text-4xl font-bold text-yellow-500;
+  }
+  .quick-fact-label {
+    @apply text-[18px] font-medium;
+  }
 }
