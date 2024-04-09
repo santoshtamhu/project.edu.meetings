@@ -12,7 +12,7 @@ export default function Home() {
     <div>
       <div className="relative mb-52">
         <Hero />
-        <div className="absolute -bottom-36 lg:-bottom-28 right-auto left-1/2 -translate-x-1/2">
+        <div className="absolute -bottom-36 sm:-bottom-40 md:-bottom-36 lg:-bottom-28 2xl:-bottom-32 right-auto left-1/2 -translate-x-1/2">
           <Highlights />
         </div>
       </div>
