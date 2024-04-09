@@ -18,11 +18,13 @@ export default function Home() {
       </div>
       <UpcomingMeetings />
       <div className="bg-[url('bg-image/apply-bg.jpg')] bg-center bg-cover bg-fixed py-36 mt-10">
-        <div className=" lg:grid lg:grid-cols-2 lg:gap-14 lg:lgContainer xl:xlContainer 2xl:xxlContainer">
+        <div className="lg:grid lg:grid-cols-2 lg:gap-14 lg:lgContainer xl:xlContainer 2xl:xxlContainer">
           <CTA />
           <QuickInfo />
         </div>
       </div>
+
+      {/* Contact Form and Contact Info Container */}
       <div className="container sm:smContainer md:mdContainer lg:lgContainer xl:xlContainer 2xl:xxlContainer lg:flex mt-8 lg:gap-8 items-center">
         <div className="flex-grow">
           <ContactForm />
