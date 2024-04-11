@@ -84,7 +84,7 @@ export default function Highlights() {
     ],
   };
   return (
-    <div className=" w-[352px] sm:w-[572px] md:w-[728px] lg:w-[968px] xl:w-[1148px] 2xl:w-[1328px] mt-12">
+    <div className="w-[352px] sm:w-[572px] md:w-[728px] lg:w-[968px] xl:w-[1148px] 2xl:w-[1328px] mt-12">
       <Slider {...settings}>
         {highlights.map((item) => {
           return (

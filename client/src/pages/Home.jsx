@@ -7,6 +7,7 @@ import QuickInfo from "../components/QuickInfo";
 import ContactForm from "../components/ContactForm";
 import { ContactInfo } from "../components/ContactInfo";
 import QuickFacts from "../components/QuickFacts";
+import PopularCourses from "../components/PopularCourses";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
           <QuickInfo />
         </div>
       </div>
+      <PopularCourses />
 
       <QuickFacts />
 
