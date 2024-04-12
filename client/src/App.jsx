@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "./Layout";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
-import Meeting from "./components/common/Meeting";
+import Meetings from "./pages/Meetings";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -20,7 +20,7 @@ export default function App() {
         },
         {
           path: "/meetings",
-          element: <Meeting />,
+          element: <Meetings />,
         },
       ],
     },

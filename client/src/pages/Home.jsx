@@ -19,14 +19,13 @@ export default function Home() {
         </div>
       </div>
       <UpcomingMeetings />
-      <div className="bg-[url('bg-image/apply-bg.jpg')]    py-36 mt-10">
+      <div className="bg-[url('bg-image/apply-bg.jpg')] py-36">
         <div className="lg:grid lg:grid-cols-2 lg:gap-14 lg:lgContainer xl:xlContainer 2xl:xxlContainer">
           <CTA />
           <QuickInfo />
         </div>
       </div>
       <PopularCourses />
-
       <QuickFacts />
 
       {/* Contact Form and Contact Info Container */}

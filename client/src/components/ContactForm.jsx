@@ -9,6 +9,8 @@ export default function ContactForm() {
         <form
           action=""
           className="lg:grid lg:grid-cols-2 lg:grid-rows-4 lg:gap-x-5"
+
+          // grid style 
           style={{
             gridTemplateColumns: "auto auto",
             gridTemplateRows: "auto auto auto auto",

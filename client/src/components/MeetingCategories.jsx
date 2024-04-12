@@ -7,7 +7,7 @@ export default function MeetingCategories() {
         <h2 className="text-[18px] font-semibold">Meeting Categores</h2>
       </div>
       <div>
-        <ul className="flex flex-col text-[15px] gap-3 font-medium">
+        <ul className="flex flex-col text-[15px] gap-4 font-medium">
           <li>Meeting Category 1</li>
           <li>Meeting Category 2</li>
           <li>Meeting Category 3</li>

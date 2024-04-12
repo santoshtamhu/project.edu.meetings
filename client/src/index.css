@@ -24,3 +24,18 @@
 .slick-list {
   margin: 0 -20px; /* Counteract the extra margin on the edges */
 }
+
+/* .masonry {
+  width: 1024px;
+  margin: 0px auto;
+  margin-top: 50px;
+  columns: 3;
+  column-gap: 10px;
+}
+
+.box {
+  width: auto;
+  margin-bottom: 10px;
+  break-inside: avoid;
+}
+ */

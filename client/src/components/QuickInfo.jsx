@@ -4,6 +4,7 @@ import { FaChevronDown, FaChevronRight } from "react-icons/fa";
 export default function QuickInfo() {
   let initialStates = {
     0: true,
+    1: true,
   };
   const [isExpanded, setIsExpanded] = useState(initialStates);
   let infos = [

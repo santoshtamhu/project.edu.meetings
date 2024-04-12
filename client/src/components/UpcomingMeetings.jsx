@@ -17,8 +17,10 @@ export default function UpcomingMeetings() {
       });
   }, []);
 
+  const showMeetings = meetings.slice(0, 4);
+
   return (
-    <div>
+    <div className="mb-24">
       <h1 className="uppercase my-14 text-white text-xl font-bold text-center">
         Upcoming Meetings
         <hr className=" border-white border-opacity-15 mt-6" />
@@ -28,11 +30,11 @@ export default function UpcomingMeetings() {
           <MeetingCategories />
         </div>
         <div className="col-span-2">
-          <div className="lg:grid lg:gap-5 grid-cols-2">
-            {meetings.map((el) => {
+          <div className="flex flex-col gap-6 lg:grid lg:gap-5 grid-cols-2">
+            {showMeetings.map((el) => {
               return (
                 <div key={el._id}>
-                  <Meeting meeting={el} />;
+                  <Meeting meeting={el} />
                 </div>
               );
             })}
