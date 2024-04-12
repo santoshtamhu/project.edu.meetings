@@ -14,6 +14,10 @@ const CourseSchema = new Schema({
   description: {
     type: String,
   },
+  rating: {
+    type: Number,
+    required: true,
+  },
   image: Object,
 });
 

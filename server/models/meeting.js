@@ -26,3 +26,10 @@ const MeetingSchema = new Schema({
 const Meeting = mongoose.model("Meetings", MeetingSchema);
 
 module.exports = Meeting;
+
+/*
+{
+  title: "event 1",
+  time: "January 2"
+}
+*/
