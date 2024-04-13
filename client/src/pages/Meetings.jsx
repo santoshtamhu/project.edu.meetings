@@ -4,17 +4,32 @@ import Meeting from "../components/common/Meeting";
 
 export default function Meetings() {
   const [meetings, setMeetings] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [metadata, setMetadata] = useState({});
+  const [hasNextPage, setHasNextPage] = useState(false);
+  let itemsPerPage = 9;
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/meetings")
-      .then((res) => {
-        setMeetings(res.data);
-      })
-      .catch((err) => {
+    const fetchMeetings = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:8000/api/meetings?page=${currentPage}&per_page=${itemsPerPage}`
+        );
+        setMeetings(res.data.meetings);
+        setMetadata(res.data.metadata);
+        setHasNextPage(res.data?.next);
+      } catch (err) {
         console.log(err);
-      });
-  }, []);
+      }
+    };
+    fetchMeetings();
+  }, [currentPage, itemsPerPage]);
+
+  // Total Meetings
+  const totalMeetings = metadata.total;
+
+  // Total Required Pages according to items per page for all the Meetings
+  const totalPages = Math.floor(totalMeetings / itemsPerPage) + 1;
 
   return (
     <div>
@@ -31,12 +46,7 @@ export default function Meetings() {
           <button className="btn w-auto">Important</button>
           <button className="btn w-auto">Attractive</button>
         </div>
-        {/*  <div
-          className="
-        container sm:smContainer md:mdContainer lg:lgContainer xl:xlContainer 2xl:xxlContainer md:grid md:grid-cols-2 lg:grid-cols-3 mt-16 flex flex-col gap-6
-        "
-        > */}
-        <div className="mt-20 container md:mdContainer lg:lgContainer xl:xlContainer 2xl:xxlContainer md:columns-2 md:gap-8 lg:columns-3">
+        <div className="mt-16 container md:mdContainer lg:lgContainer xl:xlContainer 2xl:xxlContainer md:columns-2 md:gap-8 lg:columns-3">
           {meetings.map((meeting) => {
             return (
               <div className="mb-8">
@@ -44,6 +54,27 @@ export default function Meetings() {
               </div>
             );
           })}
+        </div>
+        <div className="flex gap-3 justify-center mt-20">
+          <button
+            className="bg-white px-4 py-2 rounded-md"
+            onClick={() => {
+              setCurrentPage((prev) => prev - 1);
+            }}
+            disabled={currentPage === 1}
+          >
+            &lt;
+          </button>
+
+          <button
+            className="bg-white px-4 py-2 rounded-md"
+            onClick={() => {
+              setCurrentPage((prev) => prev + 1);
+            }}
+            disabled={!hasNextPage}
+          >
+            &gt;
+          </button>
         </div>
       </div>
     </div>
