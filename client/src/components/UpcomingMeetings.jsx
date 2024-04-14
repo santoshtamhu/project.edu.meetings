@@ -7,14 +7,15 @@ export default function UpcomingMeetings() {
   const [meetings, setMeetings] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/meetings")
-      .then((res) => {
-        setMeetings(res.data);
-      })
-      .catch((err) => {
+    const fetchMeetings = async () => {
+      try {
+        const res = await axios.get("http://localhost:8000/api/meetings");
+        setMeetings(res.data.meetings);
+      } catch (err) {
         console.log(err);
-      });
+      }
+    };
+    fetchMeetings();
   }, []);
 
   const showMeetings = meetings.slice(0, 4);
