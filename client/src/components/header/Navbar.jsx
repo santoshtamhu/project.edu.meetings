@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { CgMenuLeft } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
 
 export default function Navbar() {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+
   let menuItems = [
     { title: "Home", to: "/" },
     { title: "Meetings", to: "/meetings" },
@@ -18,48 +20,56 @@ export default function Navbar() {
     setIsOpen(!isOpen);
   };
 
+  const handleScroll = () => {
+    const mainNavbar = document.querySelector(".main-navbar");
+    const secNavbar = document.querySelector(".sec-navbar");
+
+    let scroll = 50;
+
+    // scroll 600px only on the home page, 50px on all the rest of the pages.
+    if (location.pathname === "/") {
+      scroll = 600;
+    }
+
+    if (window.scrollY > scroll) {
+      mainNavbar.classList.add(
+        "lg:text-black",
+        "fixed",
+        "transition-all",
+        "duration-700",
+        "transform",
+        "md:-translate-y-1/2",
+        "-translate-y-full"
+      );
+      mainNavbar.classList.remove("lg:bg-opacity-15", "lg:text-white");
+      secNavbar.classList.add("md:h-20");
+      secNavbar.classList.remove("md:h-24");
+    } else {
+      mainNavbar.classList.add(
+        "lg:bg-opacity-15",
+        "text-black",
+        "lg:text-white"
+      );
+      mainNavbar.classList.remove(
+        "lg:text-black",
+        "fixed",
+        "transform",
+        "md:-translate-y-1/2",
+        "-translate-y-full"
+      );
+      secNavbar.classList.add("md:h-24");
+      secNavbar.classList.remove("md:h-20");
+    }
+  };
+
   useEffect(() => {
-    const handleScroll = () => {
-      const mainNavbar = document.querySelector(".main-navbar");
-      const secNavbar = document.querySelector(".sec-navbar");
-
-      if (window.scrollY > 600) {
-        mainNavbar.classList.add(
-          "lg:text-black",
-          "fixed",
-          "transition-all",
-          "duration-700",
-          "transform",
-          "md:-translate-y-1/2",
-          "-translate-y-full"
-        );
-        mainNavbar.classList.remove("lg:bg-opacity-15", "lg:text-white");
-        secNavbar.classList.add("md:h-20");
-        secNavbar.classList.remove("md:h-24");
-      } else {
-        mainNavbar.classList.add(
-          "lg:bg-opacity-15",
-          "text-black",
-          "lg:text-white"
-        );
-        mainNavbar.classList.remove(
-          "lg:text-black",
-          "fixed",
-          "transform",
-          "md:-translate-y-1/2",
-          "-translate-y-full"
-        );
-        secNavbar.classList.add("md:h-24");
-        secNavbar.classList.remove("md:h-20");
-      }
-    };
-
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
+
   return (
     <div className="w-full bg-white lg:bg-opacity-15 main-navbar lg:text-white">
       <div className="md:h-24 md:mdContainer sm:smContainer lg:lgContainer xl:xlContainer 2xl:xxlContainer items-center sec-navbar font-poppins flex justify-around md:justify-between">
