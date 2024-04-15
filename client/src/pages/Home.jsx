@@ -29,7 +29,7 @@ export default function Home() {
       <QuickFacts />
 
       {/* Contact Form and Contact Info Container */}
-      <div className="container sm:smContainer md:mdContainer lg:lgContainer xl:xlContainer 2xl:xxlContainer lg:flex mt-8 lg:gap-8 items-center">
+      <div className="container sm:smContainer md:mdContainer lg:lgContainer xl:xlContainer 2xl:xxlContainer lg:flex mt-40 lg:gap-8 items-center ">
         <div className="flex-grow">
           <ContactForm />
         </div>
