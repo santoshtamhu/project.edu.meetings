@@ -17,7 +17,7 @@ export default function Meetings() {
         );
         setMeetings(res.data.meetings);
         setMetadata(res.data.metadata);
-        setHasNextPage(res.data?.next);
+        setHasNextPage(res.data.metadata?.nextPage);
       } catch (err) {
         console.log(err);
       }
@@ -25,11 +25,8 @@ export default function Meetings() {
     fetchMeetings();
   }, [currentPage, itemsPerPage]);
 
-  // Total Meetings
-  const totalMeetings = metadata.total;
-
-  // Total Required Pages according to items per page for all the Meetings
-  const totalRequiredPages = Math.floor(totalMeetings / itemsPerPage) + 1;
+  // Total Required Pages
+  const totalRequiredPages = metadata.totalPages;
 
   let pageNumbers = [];
 

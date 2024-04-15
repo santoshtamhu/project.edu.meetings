@@ -16,9 +16,19 @@ const MeetingSchema = new Schema({
   },
   month: {
     type: String,
+    required: true,
   },
   day: {
     type: Number,
+    required: true,
+  },
+  important: {
+    type: Boolean,
+    required: true,
+  },
+  attractive: {
+    type: Boolean,
+    required: true,
   },
   image: String,
 });

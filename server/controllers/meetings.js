@@ -1,48 +1,77 @@
 const { mongoose } = require("mongoose");
 const Meeting = require("../models/meeting");
 
+// FETCH MEETINGS
 const fetchMeetings = async (req, res) => {
-  const meetings = await Meeting.find({});
-  const total = meetings.length;
+  const filter = req.query.filter || "all"; // default to "all"
+  let page = parseInt(req.query.page) || 1; // default to page 1
+  let per_page = parseInt(req.query.per_page) || 5; // default to 5 items per page
 
-  const page = parseInt(req.query.page) || 1;
-  const per_page = parseInt(req.query.per_page) || 5;
+  // getting current month and the day
+  const currentMonth = new Date().getMonth() + 1; // getMonth() starts the month with 0 to 11
+  const currentDay = new Date().getDate();
+
+  // FILTERING
+  let filterOptions = {};
+  if (filter === "soon") {
+    filterOptions.month = currentMonth;
+    filterOptions.day = { $gte: currentDay }; // filters the documents that has the "day" property greater or equal to the "currentDay", hence, the meetings that are coming soon.
+  } else if (filter !== "all") {
+    filterOptions[filter] = true;
+  }
+  console.log(filterOptions);
 
   const startIndex = (page - 1) * per_page;
   const endIndex = startIndex + per_page;
 
-  const results = {};
+  try {
+    const results = {};
+    const totalMeetings = await Meeting.countDocuments(filterOptions);
 
-  results.metadata = {
-    total,
-    page,
-    per_page,
-  };
+    let totalPages;
+    if (totalMeetings === 0) {
+      totalPages = 0;
+      page = 0;
+      per_page = 0;
+    } else {
+      totalPages = Math.floor(totalMeetings / per_page) + 1;
+    }
 
-  if (endIndex < meetings.length) {
-    results.next = {
-      page: page + 1,
+    // inserts a property named "metadata" that shows all the metadata of the documents
+    results.metadata = {
+      totalMeetings,
+      totalPages,
+      page,
       per_page,
     };
+
+    // inserts "next" object to the "results" object until there's no next page
+    if (endIndex < totalMeetings) {
+      results.metadata.nextPage = page + 1;
+    }
+
+    // inserts "previous" object to the "results" object until there's no preivous page
+    if (startIndex > 0) {
+      results.metadata.prevPage = page - 1;
+    }
+
+    results.meetings = await Meeting.find(filterOptions)
+      .skip((page - 1) * per_page)
+      .limit(per_page);
+
+    res.send(results);
+  } catch (err) {
+    console.log(err);
   }
-
-  if (startIndex > 0) {
-    results.previous = {
-      page: page - 1,
-      per_page,
-    };
-  }
-
-  results.meetings = meetings.slice(startIndex, endIndex);
-
-  res.send(results);
 };
 
+// CREATE A MEETING
 const createMeeting = async (req, res) => {
   const meeting = await Meeting.create(req.body);
   res.send(meeting);
 };
 
+// DELETE A MEETING
 const deleteMeeting = async (req, res, next) => {
   try {
     let ObjectId = mongoose.Types.ObjectId;
@@ -64,23 +93,3 @@ module.exports = {
   createMeeting,
   deleteMeeting,
 };
-
-/* - `const results = {};`: This line creates an empty object named `results` that will store the data to be sent back in the response.
-
-- `if (endIndex < items.length) { ... }`: This conditional block checks if there are more items available after the current page.
-    - `results.next = { ... };`: If there are more items, a `next` property is added to the `results` object. This `next` property holds an object with information about the next page, including its number (`page: page + 1`) and the `limit` (number of items per page).
-
-- `if (startIndex > 0) { ... }`: This conditional block checks if the current page is not the first page.
-    - `results.previous = { ... };`: If the current page is not the first one, a `previous` property is added to the `results` object. This `previous` property holds an object with information about the previous page, including its number (`page: page - 1`) and the `limit` (number of items per page).
-
-- `results.results = items.slice(startIndex, endIndex);`: This line retrieves the actual data for the current page using the `slice` method on the `items` array. It provides the `startIndex` and `endIndex` calculated earlier to extract the relevant portion of the data. */
-
-/* 
-
-startIndex = 9 
-0
-
-
-
-
-*/
