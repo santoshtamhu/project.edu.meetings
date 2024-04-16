@@ -15,7 +15,7 @@ const MeetingSchema = new Schema({
     type: String,
   },
   month: {
-    type: String,
+    type: Number,
     required: true,
   },
   day: {
