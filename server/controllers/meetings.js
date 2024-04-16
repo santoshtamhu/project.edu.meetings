@@ -4,9 +4,9 @@ const Meeting = require("../models/meeting");
 // FETCH MEETINGS
 const fetchMeetings = async (req, res) => {
   const filter = req.query.filter || "all"; // default to "all"
-  const sort_by = req.query.sort_by || "date"; // default to "date"
+  const sort_by = req.query.sort_by || "updatedAt"; // default to "date"
   let page = parseInt(req.query.page) || 1; // default to page 1
-  let per_page = parseInt(req.query.per_page) || 5; // default to 5 items per page
+  let per_page = parseInt(req.query.per_page) || 25; // default to 5 items per page
 
   // getting current month and the day
   const currentMonth = new Date().getMonth() + 1; // getMonth() starts months from 0 - 11
@@ -15,8 +15,9 @@ const fetchMeetings = async (req, res) => {
   // FILTERING
   let filterOptions = {};
   let sortOptions = {};
+  sortOptions[sort_by] = -1; // default to descending order
   if (filter === "soon") {
-    sortOptions = { month: 1, day: 1 }; // sort by upcoming meetings first only if filter is "soon"
+    sortOptions = { month: 1, day: 1 }; // sort by upcoming meetings first if filter is "soon"
 
     // "$or" operator to specify multiple conditions
     filterOptions.$or = [
@@ -26,8 +27,6 @@ const fetchMeetings = async (req, res) => {
   } else if (filter !== "all") {
     filterOptions[filter] = true;
   }
-
-  sortOptions[sort_by] = 1; // default to ascending order
 
   console.log(filterOptions);
   console.log(sortOptions);
@@ -82,28 +81,32 @@ const fetchMeetings = async (req, res) => {
 };
 
 // CREATE A MEETING
-const createMeeting = async (req, res) => {
-  const meeting = req.body;
+const createMeeting = async (req, res, next) => {
+  try {
+    const meeting = req.body;
 
-  const monthNumbers = {
-    JANUARY: 1,
-    FEBRUARY: 2,
-    MARCH: 3,
-    APRIL: 4,
-    MAY: 5,
-    JUNE: 6,
-    JULY: 7,
-    AUGUST: 8,
-    SEPTEMBER: 9,
-    OCTOBER: 10,
-    NOVEMBER: 11,
-    DECEMBER: 12,
-  };
+    const monthNumbers = {
+      JANUARY: 1,
+      FEBRUARY: 2,
+      MARCH: 3,
+      APRIL: 4,
+      MAY: 5,
+      JUNE: 6,
+      JULY: 7,
+      AUGUST: 8,
+      SEPTEMBER: 9,
+      OCTOBER: 10,
+      NOVEMBER: 11,
+      DECEMBER: 12,
+    };
 
-  meeting.month = monthNumbers[meeting.month.toUpperCase()]; // converting month names to integers
+    meeting.month = monthNumbers[meeting.month.toUpperCase()]; // converting month names to integers
 
-  await Meeting.create(meeting);
-  res.send(meeting);
+    await Meeting.create(meeting);
+    res.send(meeting);
+  } catch (err) {
+    next(err);
+  }
 };
 
 // DELETE A MEETING
