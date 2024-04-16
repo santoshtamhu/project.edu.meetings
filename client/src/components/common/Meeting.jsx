@@ -1,6 +1,25 @@
 import React from "react";
 
 export default function Meeting({ meeting }) {
+  let { month } = meeting;
+
+  const monthNames = {
+    1: "JANUARY",
+    2: "FEBRUARY",
+    3: "MARCH",
+    4: "APRIL",
+    5: "MAY",
+    6: "JUNE",
+    7: "JULY",
+    8: "AUGUST",
+    9: "SEPTEMBER",
+    10: "OCTOBER",
+    11: "NOVEMBER",
+    12: "DECEMBER",
+  };
+
+  month = monthNames[month];
+  const shortMonth = month.slice(0, 3);
   return (
     <div className="rounded-3xl overflow-hidden">
       <div className="relative">
@@ -14,8 +33,10 @@ export default function Meeting({ meeting }) {
       </div>
       <div className="grid grid-cols-5  gap-5 p-7 bg-white">
         <div className="col-span-1 flex items-center flex-col">
-          <span className="text-[13px] text-customRed font-semibold">NOV</span>
-          <span className="text-xl font-semibold">26</span>
+          <span className="text-[13px] text-customRed uppercase font-semibold">
+            {shortMonth}
+          </span>
+          <span className="text-xl font-semibold">{meeting.day}</span>
         </div>
         <div className="col-span-4 flex flex-col gap-2">
           <h2 className="text-[18px] font-semibold">{meeting.title}</h2>
