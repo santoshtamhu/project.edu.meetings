@@ -4,7 +4,6 @@ const Meeting = require("../models/meeting");
 // FETCH MEETINGS
 const fetchMeetings = async (req, res, next) => {
   const filter = req.query.filter || "all"; // default to "all"
-  const sort_by = req.query.sort_by || "updatedAt"; // default to "date"
   let page = parseInt(req.query.page) || 1; // default to page 1
   let per_page = parseInt(req.query.per_page) || 25; // default to 5 items per page
 
@@ -12,20 +11,19 @@ const fetchMeetings = async (req, res, next) => {
   const currentMonth = new Date().getMonth() + 1; // getMonth() starts months from 0 - 11
   const currentDay = new Date().getDate();
 
+  const sort = { month: 1, day: 1 }; // sort by "month" and "day"
   let filterOptions = {};
-  let sortOptions = {};
 
-  sortOptions[sort_by] = -1; // default to descending order
-
-  if (filter === "soon") {
-    sortOptions = { month: 1, day: 1 }; // sort by upcoming meetings first if filter is "soon"
-
+  if (filter == "all") {
     // "$or" operator to specify multiple conditions
     filterOptions.$or = [
       { month: currentMonth, day: { $gte: currentDay } }, // Current month's meetings with day >= currentDay
       { month: { $gt: currentMonth } }, // Meetings in future months
     ];
-  } else if (filter !== "all") {
+  } else if (filter == "soon") {
+    filterOptions.month = currentMonth;
+    filterOptions.day = { $gte: currentDay };
+  } else {
     filterOptions[filter] = true;
   }
 
@@ -68,7 +66,7 @@ const fetchMeetings = async (req, res, next) => {
     }
 
     results.meetings = await Meeting.find(filterOptions)
-      .sort(sortOptions)
+      .sort(sort)
       .skip((page - 1) * per_page) // skips the initial specified numbers of meetings and returns the rest
       .limit(per_page); // returns the specified number of meetings per page
 
