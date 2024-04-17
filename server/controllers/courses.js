@@ -2,12 +2,12 @@ const Course = require("../models/course");
 
 const fetchCourses = async (req, res) => {
   const courses = await Course.find({});
-  res.send(courses);
+  res.json(courses);
 };
 
 const createCourse = async (req, res) => {
   const course = await Course.create(req.body);
-  res.send(course);
+  res.json(course);
 };
 
 module.exports = {
