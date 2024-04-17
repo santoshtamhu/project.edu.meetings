@@ -2,7 +2,7 @@ const { mongoose } = require("mongoose");
 const Meeting = require("../models/meeting");
 
 // FETCH MEETINGS
-const fetchMeetings = async (req, res) => {
+const fetchMeetings = async (req, res, next) => {
   const filter = req.query.filter || "all"; // default to "all"
   const sort_by = req.query.sort_by || "updatedAt"; // default to "date"
   let page = parseInt(req.query.page) || 1; // default to page 1
@@ -104,6 +104,7 @@ const createMeeting = async (req, res, next) => {
     await Meeting.create(meeting);
     res.json(meeting);
   } catch (err) {
+    console.log([err.message, err.error]);
     next(err);
   }
 };

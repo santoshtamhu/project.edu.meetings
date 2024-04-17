@@ -2,6 +2,7 @@ const express = require("express");
 const meetingsRoute = require("./routers/meetings");
 const coursesRoute = require("./routers/courses");
 const cors = require("cors");
+const handleError = require("./middlewares/handleError");
 const app = express();
 const port = 8000;
 
@@ -17,6 +18,9 @@ app.use(express.json());
 //Routes
 app.use("/api/meetings", meetingsRoute);
 app.use("/api/courses", coursesRoute);
+
+//Error handling middleware
+app.use(handleError);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
