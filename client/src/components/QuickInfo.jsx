@@ -6,7 +6,16 @@ export default function QuickInfo() {
     0: true,
     1: true,
   };
+
   const [isExpanded, setIsExpanded] = useState(initialStates);
+
+  const toggleInfo = (index) => {
+    setIsExpanded({
+      ...isExpanded,
+      [index]: !isExpanded[index],
+    });
+  };
+
   let infos = [
     {
       title: "About EDU Meeting",
@@ -29,13 +38,6 @@ export default function QuickInfo() {
         "If you want to get the latest collection of HTML CSS templates for your websites, you may visit Too CSS website. If you need a working contact form script, please visit our contact page for more info.",
     },
   ];
-  console.log(isExpanded);
-  const toggleInfo = (index) => {
-    setIsExpanded({
-      ...isExpanded,
-      [index]: !isExpanded[index],
-    });
-  };
 
   return (
     <>
