@@ -12,10 +12,11 @@ const fetchMeetings = async (req, res) => {
   const currentMonth = new Date().getMonth() + 1; // getMonth() starts months from 0 - 11
   const currentDay = new Date().getDate();
 
-  // FILTERING
   let filterOptions = {};
   let sortOptions = {};
+
   sortOptions[sort_by] = -1; // default to descending order
+
   if (filter === "soon") {
     sortOptions = { month: 1, day: 1 }; // sort by upcoming meetings first if filter is "soon"
 
@@ -27,9 +28,6 @@ const fetchMeetings = async (req, res) => {
   } else if (filter !== "all") {
     filterOptions[filter] = true;
   }
-
-  console.log(filterOptions);
-  console.log(sortOptions);
 
   const startIndex = (page - 1) * per_page;
   const endIndex = startIndex + per_page;
@@ -74,9 +72,10 @@ const fetchMeetings = async (req, res) => {
       .skip((page - 1) * per_page) // skips the initial specified numbers of meetings and returns the rest
       .limit(per_page); // returns the specified number of meetings per page
 
-    res.send(results);
+    res.json(results);
   } catch (err) {
-    console.log(err);
+    console.log(err.message);
+    next(err);
   }
 };
 
@@ -103,7 +102,7 @@ const createMeeting = async (req, res, next) => {
     meeting.month = monthNumbers[meeting.month.toUpperCase()]; // converting month names to integers
 
     await Meeting.create(meeting);
-    res.send(meeting);
+    res.json(meeting);
   } catch (err) {
     next(err);
   }
