@@ -3,11 +3,13 @@ const {
   fetchMeetings,
   createMeeting,
   deleteMeeting,
-  fetchMeeting,
+  fetchSingleMeeting,
 } = require("../controllers/meetings");
 const router = express.Router();
 
 router.get("/", fetchMeetings);
+
+router.get("/:_id", fetchSingleMeeting);
 
 router.post("/", createMeeting);
 

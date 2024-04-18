@@ -77,6 +77,25 @@ const fetchMeetings = async (req, res, next) => {
   }
 };
 
+// FETCH SINGLE MEETING
+const fetchSingleMeeting = async (req, res, next) => {
+  try {
+    let ObjectId = mongoose.Types.ObjectId;
+    if (!ObjectId.isValid(req.params._id)) {
+      return res.status(404).send("invalid object id");
+    }
+    let matched = await Meeting.findById(req.params._id);
+    if (!matched) {
+      return res.sendStatus(404);
+    }
+    const meeting = await Meeting.findById(req.params._id);
+    res.json(meeting);
+  } catch (err) {
+    console.log(err.message);
+    next(err);
+  }
+};
+
 // CREATE A MEETING
 const createMeeting = async (req, res, next) => {
   try {
@@ -112,7 +131,7 @@ const deleteMeeting = async (req, res, next) => {
   try {
     let ObjectId = mongoose.Types.ObjectId;
     if (!ObjectId.isValid(req.params._id)) {
-      return res.sendStatus(404);
+      return res.status(404).send("invalid object id");
     }
     let matched = await Meeting.findById(req.params._id);
     if (!matched) {
@@ -128,4 +147,5 @@ module.exports = {
   fetchMeetings,
   createMeeting,
   deleteMeeting,
+  fetchSingleMeeting,
 };
