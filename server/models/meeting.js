@@ -25,13 +25,16 @@ const MeetingSchema = new Schema(
     },
     important: {
       type: Boolean,
-      required: true,
     },
     attractive: {
       type: Boolean,
-      required: true,
     },
-    image: String,
+    image: {
+      path: {
+        type: String,
+        required: true,
+      },
+    },
   },
   {
     timestamps: true,

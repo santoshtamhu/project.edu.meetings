@@ -19,7 +19,7 @@ export default function Home() {
         </div>
       </div>
       <UpcomingMeetings />
-      <div className="bg-[url('bg-image/apply-bg.jpg')] py-36">
+      <div className="bg-[url('bg-image/apply-bg.jpg')] py-36 bg-center bg-cover bg-fixed">
         <div className="lg:grid lg:grid-cols-2 lg:gap-14 lg:lgContainer xl:xlContainer 2xl:xxlContainer">
           <CTA />
           <QuickInfo />

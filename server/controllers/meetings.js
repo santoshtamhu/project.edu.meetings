@@ -80,14 +80,6 @@ const fetchMeetings = async (req, res, next) => {
 // FETCH SINGLE MEETING
 const fetchSingleMeeting = async (req, res, next) => {
   try {
-    let ObjectId = mongoose.Types.ObjectId;
-    if (!ObjectId.isValid(req.params._id)) {
-      return res.status(404).send("invalid object id");
-    }
-    let matched = await Meeting.findById(req.params._id);
-    if (!matched) {
-      return res.sendStatus(404);
-    }
     const meeting = await Meeting.findById(req.params._id);
     res.json(meeting);
   } catch (err) {
@@ -99,7 +91,7 @@ const fetchSingleMeeting = async (req, res, next) => {
 // CREATE A MEETING
 const createMeeting = async (req, res, next) => {
   try {
-    const meeting = req.body;
+    let meeting = req.body;
 
     const monthNumbers = {
       JANUARY: 1,
@@ -118,7 +110,18 @@ const createMeeting = async (req, res, next) => {
 
     meeting.month = monthNumbers[meeting.month.toUpperCase()]; // converting month names to integers
 
-    await Meeting.create(meeting);
+    if (!req.file) {
+      return res.status(400).send("please upload an image file!");
+    }
+
+    const path = req.file.path.replaceAll("\\", "/");
+
+    meeting = await Meeting.create({
+      ...meeting,
+      image: {
+        path,
+      },
+    });
     res.json(meeting);
   } catch (err) {
     console.log([err.message, err.error]);
@@ -129,14 +132,6 @@ const createMeeting = async (req, res, next) => {
 // DELETE A MEETING
 const deleteMeeting = async (req, res, next) => {
   try {
-    let ObjectId = mongoose.Types.ObjectId;
-    if (!ObjectId.isValid(req.params._id)) {
-      return res.status(404).send("invalid object id");
-    }
-    let matched = await Meeting.findById(req.params._id);
-    if (!matched) {
-      return res.sendStatus(404);
-    }
     await Meeting.findByIdAndDelete(req.params._id);
     res.send("meeting deleted successfully!");
   } catch (err) {

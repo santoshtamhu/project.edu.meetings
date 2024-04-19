@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function MeetingDetails() {
   const [meeting, setMeeting] = useState({});
@@ -107,9 +107,11 @@ export default function MeetingDetails() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center">
-        <button className="btn mt-7 w-64 ">Back to Meetings List</button>
-      </div>
+      <Link to={"/meetings"}>
+        <div className="flex justify-center">
+          <button className="btn mt-7 w-64">Back to Meetings List</button>
+        </div>
+      </Link>
     </div>
   );
 }

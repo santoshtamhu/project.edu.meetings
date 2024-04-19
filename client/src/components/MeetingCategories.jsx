@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function MeetingCategories() {
   return (
@@ -15,9 +16,11 @@ export default function MeetingCategories() {
           <li>Meeting Category 5</li>
         </ul>
       </div>
-      <div className="border-0 border-t text-center pt-7">
-        <button className="btn uppercase w-full">all upcoming courses</button>
-      </div>
+      <Link to={"/meetings"}>
+        <div className="border-0 border-t text-center pt-7">
+          <button className="btn uppercase w-full">all upcoming courses</button>
+        </div>
+      </Link>
     </div>
   );
 }

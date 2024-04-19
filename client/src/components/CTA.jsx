@@ -11,7 +11,7 @@ export default function CTA() {
             or university or business. You can feel free to modify or edit this
             layout.
           </p>
-          <button className="btn uppercase">Join Us Now!</button>
+          <button className="btn uppercase w-48">Join Us Now!</button>
         </div>
         <div className=" bg-white bg-opacity-15 p-10 flex flex-col gap-5">
           <h1 className="text-[24px] font-bold">APPLY FOR BACHELOR DEGREE</h1>
@@ -20,7 +20,7 @@ export default function CTA() {
             or university or business. You can feel free to modify or edit this
             layout.
           </p>
-          <button className="btn uppercase bg-yellow-600 text-white">
+          <button className="btn uppercase w-48 bg-yellow-600 text-white">
             Join Us Now!
           </button>
         </div>
