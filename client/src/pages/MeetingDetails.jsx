@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { API_URL } from "../constants/domain";
 
 export default function MeetingDetails() {
   const [meeting, setMeeting] = useState({});
@@ -9,9 +10,7 @@ export default function MeetingDetails() {
   useEffect(() => {
     const fetchMeeting = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:8000/api/meetings/` + slug
-        );
+        const res = await axios.get(`${API_URL}/meetings/` + slug);
         setMeeting(res.data);
       } catch (err) {
         console.log(err.message);
@@ -41,6 +40,11 @@ export default function MeetingDetails() {
 
   const shortMonth = month ? month.slice(0, 3) : "";
 
+  const imageUrl = meeting.image?.url;
+  const noImageUrl = "/assets/images/no-image/noimage.jpg";
+
+  console.log(imageUrl);
+
   return (
     <div>
       {/* HEADER */}
@@ -50,7 +54,12 @@ export default function MeetingDetails() {
       </div>
       {/* BODY */}
       <div className="mt-32 container sm:smContainer md:mdContainer lg:lgContainer xl:xlContainer 2xl:xxlContainer rounded-3xl overflow-hidden">
-        <div className="bg-[url('https://students.ubc.ca/sites/students.ubc.ca/files/img_blog_20140819_JumpStart_39.jpg')] p-5 sm:h-[185px] md:h-64 lg:h-80 xl:h-[400px] 2xl:h-[466px] bg-center bg-cover ">
+        <div
+          className="p-5 sm:h-[185px] md:h-64 lg:h-80 xl:h-[400px] 2xl:h-[466px] bg-center bg-cover"
+          style={{
+            backgroundImage: `url(${imageUrl ? imageUrl : noImageUrl})`,
+          }}
+        >
           <div className="flex justify-between">
             <span className="font-semibold bg-white rounded-xl bg-opacity-90 px-3 py-2 h-full">
               ${meeting.price}.00

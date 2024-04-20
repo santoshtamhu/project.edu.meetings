@@ -1,5 +1,11 @@
 const { mongoose } = require("mongoose");
 const Meeting = require("../models/meeting");
+const path = require("path");
+const fs = require("fs");
+const { url } = require("inspector");
+require("dotenv").config();
+
+const URL = process.env.API_URL;
 
 // FETCH MEETINGS
 const fetchMeetings = async (req, res, next) => {
@@ -114,12 +120,14 @@ const createMeeting = async (req, res, next) => {
       return res.status(400).send("please upload an image file!");
     }
 
-    const path = req.file.path.replaceAll("\\", "/");
+    let path = req.file.path.replaceAll("\\", "/");
+    const url = URL + path;
 
     meeting = await Meeting.create({
       ...meeting,
       image: {
-        path,
+        path: "/" + path,
+        url,
       },
     });
     res.json(meeting);
@@ -132,7 +140,8 @@ const createMeeting = async (req, res, next) => {
 // DELETE A MEETING
 const deleteMeeting = async (req, res, next) => {
   try {
-    await Meeting.findByIdAndDelete(req.params._id);
+    let meeting = await Meeting.findByIdAndDelete(req.params._id);
+    fs.unlinkSync(path.resolve() + meeting.image.path); //also delete the image from server
     res.send("meeting deleted successfully!");
   } catch (err) {
     next(err);

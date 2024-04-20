@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { API_URL } from "../../constants/domain";
 
 export default function Meeting({ meeting }) {
   let { month } = meeting;
-  let path = meeting.image?.path;
-  console.log(API_URL + "/" + path);
+
   const monthNames = {
     1: "JANUARY",
     2: "FEBRUARY",
@@ -29,11 +27,12 @@ export default function Meeting({ meeting }) {
         <Link to={`/meetings/${meeting._id}`}>
           <img
             src={
-              path
-                ? API_URL + "/" + path
-                : "https://mylearningspringboard.com/wp-content/uploads/2012/02/Young-Boy-Reading-in-the-Library.jpg"
+              meeting.image?.url
+                ? meeting.image.url
+                : "assets/images/no-image/noimage.jpg"
             }
             alt=""
+            className="w-full h-64 object-cover"
           />
         </Link>
         <span className="absolute top-4 left-4 font-semibold bg-white bg-opacity-90 rounded-xl px-3 py-2">

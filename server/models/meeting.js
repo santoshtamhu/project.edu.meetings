@@ -34,6 +34,10 @@ const MeetingSchema = new Schema(
         type: String,
         required: true,
       },
+      url: {
+        type: String,
+        required: true,
+      },
     },
   },
   {
