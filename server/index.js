@@ -8,7 +8,7 @@ const uploadsRoute = require("./routers/uploads");
 const app = express();
 const port = 8000;
 
-//mongodb database
+// database
 require("./config/database");
 
 //cors

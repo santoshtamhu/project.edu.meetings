@@ -8,6 +8,7 @@ require("dotenv").config();
 const URL = process.env.API_URL;
 
 // FETCH MEETINGS
+
 const fetchMeetings = async (req, res, next) => {
   const filter = req.query.filter || "all"; // default to "all"
   let page = parseInt(req.query.page) || 1; // default to page 1
@@ -84,6 +85,7 @@ const fetchMeetings = async (req, res, next) => {
 };
 
 // FETCH SINGLE MEETING
+
 const fetchSingleMeeting = async (req, res, next) => {
   try {
     const meeting = await Meeting.findById(req.params._id);
@@ -95,6 +97,7 @@ const fetchSingleMeeting = async (req, res, next) => {
 };
 
 // CREATE A MEETING
+
 const createMeeting = async (req, res, next) => {
   try {
     let meeting = req.body;
@@ -138,12 +141,16 @@ const createMeeting = async (req, res, next) => {
 };
 
 // DELETE A MEETING
+
 const deleteMeeting = async (req, res, next) => {
   try {
     let meeting = await Meeting.findByIdAndDelete(req.params._id);
-    fs.unlinkSync(path.resolve() + meeting.image.path); //also delete the image from server
+    if (meeting.image.path) {
+      fs.unlinkSync(path.resolve() + meeting.image.path); //also delete the image from server
+    }
     res.send("meeting deleted successfully!");
   } catch (err) {
+    console.log(err.message);
     next(err);
   }
 };

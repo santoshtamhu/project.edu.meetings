@@ -11,10 +11,10 @@ const router = express.Router();
 
 router.get("/", fetchMeetings);
 
-router.get("/:_id", fetchSingleMeeting);
+router.get("/:_id", handleObjectIdValidation, fetchSingleMeeting);
 
 router.post("/", upload.single("image"), createMeeting);
 
-router.delete("/:_id", deleteMeeting);
+router.delete("/:_id", handleObjectIdValidation, deleteMeeting);
 
 module.exports = router;

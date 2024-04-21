@@ -1,7 +1,7 @@
 const { default: mongoose } = require("mongoose");
 const Meeting = require("../models/meeting");
 
-const handleObjectIdValidation = async (req, res) => {
+const handleObjectIdValidation = async (req, res, next) => {
   // checking if the id is a valid mongodb objectId
   let ObjectId = mongoose.Types.ObjectId;
   if (!ObjectId.isValid(req.params._id)) {
@@ -11,6 +11,7 @@ const handleObjectIdValidation = async (req, res) => {
   if (!matched) {
     return res.sendStatus(404);
   }
+  next();
 };
 
 module.exports = handleObjectIdValidation;
