@@ -1,11 +1,6 @@
-const { mongoose } = require("mongoose");
 const Meeting = require("../models/meeting");
 const path = require("path");
 const fs = require("fs");
-const { url } = require("inspector");
-require("dotenv").config();
-
-const URL = process.env.API_URL;
 
 // FETCH MEETINGS
 
@@ -124,13 +119,11 @@ const createMeeting = async (req, res, next) => {
     }
 
     let path = req.file.path.replaceAll("\\", "/");
-    const url = URL + path;
 
     meeting = await Meeting.create({
       ...meeting,
       image: {
         path: "/" + path,
-        url,
       },
     });
     res.json(meeting);

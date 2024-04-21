@@ -4,9 +4,11 @@ const coursesRoute = require("./routers/courses");
 const cors = require("cors");
 const handleError = require("./middlewares/handleError");
 const uploadsRoute = require("./routers/uploads");
+require("dotenv").config();
+const API_PORT = process.env.API_PORT;
 
 const app = express();
-const port = 8000;
+const port = API_PORT;
 
 // database
 require("./config/database");
