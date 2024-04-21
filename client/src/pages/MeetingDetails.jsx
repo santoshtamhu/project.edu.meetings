@@ -40,7 +40,8 @@ export default function MeetingDetails() {
 
   const shortMonth = month ? month.slice(0, 3) : "";
 
-  const imageUrl = meeting.image?.url;
+  const imagePath = meeting.image?.path;
+  const imageUrl = API_URL + imagePath;
   const noImageUrl = "/assets/images/no-image/noimage.jpg";
 
   console.log(imageUrl);
