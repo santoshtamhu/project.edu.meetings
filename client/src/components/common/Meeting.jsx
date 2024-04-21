@@ -31,7 +31,9 @@ export default function Meeting({ meeting }) {
         <Link to={`/meetings/${meeting._id}`}>
           <img
             src={
-              meeting.image ? imageUrl : "assets/images/no-image/noimage.jpg"
+              meeting.image?.path
+                ? imageUrl
+                : "assets/images/no-image/noimage.jpg"
             }
             alt=""
             className="w-full h-64 object-cover"

@@ -92,10 +92,10 @@ export default function Navbar() {
           } absolute container sm:smContainer bg-white top-[42px]`}
         >
           <ul>
-            {menuItems.map((item) => {
+            {menuItems.map((item, index) => {
               return (
                 <li
-                  key={item.title}
+                  key={index}
                   className="border-t w-full h-12 flex uppercase items-center justify-center text-[14px] font-medium tracking-widest border-slate-200"
                 >
                   <NavLink

@@ -44,8 +44,6 @@ export default function MeetingDetails() {
   const imageUrl = API_URL + imagePath;
   const noImageUrl = "/assets/images/no-image/noimage.jpg";
 
-  console.log(imageUrl);
-
   return (
     <div>
       {/* HEADER */}
@@ -58,7 +56,7 @@ export default function MeetingDetails() {
         <div
           className="p-5 sm:h-[185px] md:h-64 lg:h-80 xl:h-[400px] 2xl:h-[466px] bg-center bg-cover"
           style={{
-            backgroundImage: `url(${imageUrl ? imageUrl : noImageUrl})`,
+            backgroundImage: `url(${imagePath ? imageUrl : noImageUrl})`,
           }}
         >
           <div className="flex justify-between">

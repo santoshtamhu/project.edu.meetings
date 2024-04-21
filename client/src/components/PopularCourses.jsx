@@ -61,7 +61,7 @@ export default function PopularCourses() {
           <Slider {...slider2Settings}>
             {courses.map((course) => {
               return (
-                <div key={course.title} className="">
+                <div key={course._id} className="">
                   <Course course={course} />
                 </div>
               );
