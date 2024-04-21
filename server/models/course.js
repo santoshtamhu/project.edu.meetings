@@ -17,9 +17,12 @@ const CourseSchema = new Schema(
     },
     rating: {
       type: Number,
-      required: true,
+      min: 1,
+      max: 5,
     },
-    image: Object,
+    image: {
+      path: String,
+    },
   },
   {
     timestamps: true,
