@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { CgMenuLeft } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
 
 export default function Navbar() {
+  const navigate = useNavigate();
+
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-
-  let menuItems = [
-    { title: "Home", to: "/" },
-    { title: "Meetings", to: "/meetings" },
-    { title: "Apply Now", to: "/form" },
-    { title: "Pages", to: "/pages" },
-    { title: "Courses", to: "/courses" },
-    { title: "Contact", to: "/form" },
-  ];
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -25,7 +18,6 @@ export default function Navbar() {
     const secNavbar = document.querySelector(".sec-navbar");
 
     let scroll = 50;
-
     // scroll 600px only on the home page, 50px on all the rest of the pages.
     if (location.pathname === "/") {
       scroll = 600;
@@ -70,6 +62,22 @@ export default function Navbar() {
     };
   }, [handleScroll]);
 
+  // Scroll to the respective section when respective menu is clicked
+  const scrollTo = (scrollTo) => {
+    navigate("/");
+    setTimeout(() => {
+      let targetPosition = 0;
+      if (scrollTo == "cta") {
+        targetPosition = 2000;
+      } else if (scrollTo == "courses") {
+        targetPosition = 2800;
+      } else {
+        targetPosition = 4150;
+      }
+      window.scrollTo(0, targetPosition);
+    }, 500);
+  };
+
   return (
     <div className="w-full bg-white lg:bg-opacity-15 main-navbar lg:text-white">
       <div className="md:h-24 md:mdContainer sm:smContainer lg:lgContainer xl:xlContainer 2xl:xxlContainer items-center sec-navbar font-poppins flex justify-around md:justify-between">
@@ -85,50 +93,73 @@ export default function Navbar() {
           )}
         </button>
 
-        {/* Menu for smaller screens */}
+        {/* MENU FOR SMALLER SCREENS */}
+
         <menu
           className={`${
             isOpen ? "block" : "hidden"
           } absolute container sm:smContainer bg-white top-[42px]`}
         >
           <ul>
-            {menuItems.map((item, index) => {
-              return (
-                <li
-                  key={index}
-                  className="border-t w-full h-12 flex uppercase items-center justify-center text-[14px] font-medium tracking-widest border-slate-200"
-                >
-                  <NavLink
-                    to={item.to}
-                    className={({ isActive, isPending }) =>
-                      isActive ? "active" : isPending ? "pending" : ""
-                    }
-                  >
-                    {item.title}
-                  </NavLink>
-                </li>
-              );
-            })}
+            <li className="border-t w-full h-12 flex uppercase items-center justify-center text-[14px] font-medium tracking-widest border-slate-200">
+              <NavLink
+                to="/"
+                className={({ isActive, isPending }) =>
+                  isActive ? "active" : isPending ? "pending" : ""
+                }
+              >
+                home
+              </NavLink>
+            </li>
+            <li className="border-t w-full h-12 flex uppercase items-center justify-center text-[14px] font-medium tracking-widest border-slate-200">
+              <NavLink
+                to="/meetings"
+                className={({ isActive, isPending }) =>
+                  isActive ? "active" : isPending ? "pending" : ""
+                }
+              >
+                meetings
+              </NavLink>
+            </li>
+            <li className="border-t w-full h-12 flex uppercase items-center justify-center text-[14px] font-medium tracking-widest border-slate-200">
+              apply now
+            </li>
+            <li className="border-t w-full h-12 flex uppercase items-center justify-center text-[14px] font-medium tracking-widest border-slate-200">
+              courses
+            </li>
+            <li className="border-t w-full h-12 flex uppercase items-center justify-center text-[14px] font-medium tracking-widest border-slate-200">
+              contact us
+            </li>
           </ul>
         </menu>
 
-        {/* menu for larger screens */}
+        {/* MENU FOR LARGER SCREENS */}
+
         <menu className="hidden lg:block">
           <ul className="flex gap-7 text-[14px] uppercase font-medium tracking-wider">
-            {menuItems.map((item) => {
-              return (
-                <li key={item.title}>
-                  <NavLink
-                    to={item.to}
-                    className={({ isActive, isPending }) =>
-                      isActive ? "active" : isPending ? "pending" : ""
-                    }
-                  >
-                    {item.title}
-                  </NavLink>
-                </li>
-              );
-            })}
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive, isPending }) =>
+                  isActive ? "active" : isPending ? "pending" : ""
+                }
+              >
+                home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/meetings"
+                className={({ isActive, isPending }) =>
+                  isActive ? "active" : isPending ? "pending" : ""
+                }
+              >
+                meetings
+              </NavLink>
+            </li>
+            <li onClick={() => scrollTo("cta")}>apply now</li>
+            <li onClick={() => scrollTo("courses")}>courses</li>
+            <li onClick={() => scrollTo("contact us")}>contact us</li>
           </ul>
         </menu>
       </div>
