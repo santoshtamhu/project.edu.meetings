@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Meeting from "../components/common/Meeting";
+import { API_URL } from "../constants/domain";
 
 export default function Meetings() {
   const [meetings, setMeetings] = useState([]);
@@ -13,7 +14,8 @@ export default function Meetings() {
     const fetchMeetings = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8000/api/meetings?page=${currentPage}&per_page=${itemsPerPage}&filter=${filter}`
+          API_URL +
+            `/meetings?page=${currentPage}&per_page=${itemsPerPage}&filter=${filter}`
         );
         setMeetings(res.data.meetings);
         setMetadata(res.data.metadata);
@@ -75,9 +77,9 @@ export default function Meetings() {
         {/* MEETINGS CONTAINER*/}
 
         <div className="mt-16 container sm:smContainer md:mdContainer lg:lgContainer xl:xlContainer 2xl:xxlContainer md:grid md:grid-cols-2 md:gap-7 lg:grid-cols-3">
-          {meetings.map((meeting, index) => {
+          {meetings.map((meeting) => {
             return (
-              <div key={index} className="mb-7 md:mb-0">
+              <div key={meeting._id} className="mb-7 md:mb-0">
                 <Meeting meeting={meeting} />
               </div>
             );

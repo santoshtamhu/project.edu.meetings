@@ -34,51 +34,69 @@ export default function Highlights() {
         "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio necessitatibus, eos a consequuntur vel rem ",
     },
   ];
-  /*  const CustomPrevArrow = (props) => (
-    <div {...props}>
-      <button className="to-black bg-white w-10 h-10">
-        <span className="text-black text-2xl">&lt;</span>
-      </button>
-    </div>
-  );
 
-  const CustomNextArrow = (props) => (
-    <div {...props}>
-      <button className=" bg-white w-10 h-10">
-        <span className="text-black text-2xl">&gt;</span>
-      </button>
-    </div>
-  ); */
+  function CustomNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          fontSize: "24px",
+          background: "white",
+          color: "black",
+        }}
+        onClick={onClick}
+      >
+        &gt; {/* Unicode for right arrow */}
+      </div>
+    );
+  }
+
+  function CustomPrevArrow(props) {
+    const { className, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          fontSize: "24px",
+          background: "white",
+          color: "black",
+          zIndex: 10,
+        }}
+        onClick={onClick}
+      >
+        &lt; {/* Unicode for left arrow */}
+      </div>
+    );
+  }
 
   let settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    autoplay: false,
-    autoplaySpeed: 4000,
-
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: false,
     responsive: [
       {
         breakpoint: 10000,
         settings: {
           slidesToShow: 3,
           arrows: true,
-          /*  nextArrow: <CustomNextArrow />,
-          prevArrow: <CustomPrevArrow />, */
+          nextArrow: <CustomNextArrow />,
+          prevArrow: <CustomPrevArrow />,
         },
       },
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
-          arrows: false,
         },
       },
       {
         breakpoint: 640,
         settings: {
           slidesToShow: 1,
-          arrows: false,
         },
       },
     ],
@@ -86,9 +104,9 @@ export default function Highlights() {
   return (
     <div className="w-[352px] sm:w-[572px] md:w-[728px] lg:w-[968px] xl:w-[1148px] 2xl:w-[1328px] mt-12">
       <Slider {...settings}>
-        {highlights.map((item) => {
+        {highlights.map((item, index) => {
           return (
-            <div key={item.title}>
+            <div key={index}>
               <div className=" bg-customRed p-10 flex mx-4 flex-col gap-4 text-center items-center text-white h-full rounded-3xl">
                 <div>
                   <img src={item.image} alt="" />

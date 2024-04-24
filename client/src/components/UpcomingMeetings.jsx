@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import MeetingCategories from "./MeetingCategories";
 import Meeting from "./common/Meeting";
 import axios from "axios";
+import { API_URL } from "../constants/domain";
 
 export default function UpcomingMeetings() {
   const [meetings, setMeetings] = useState([]);
@@ -9,7 +10,7 @@ export default function UpcomingMeetings() {
   useEffect(() => {
     const fetchMeetings = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/meetings");
+        const res = await axios.get(API_URL + "/meetings");
         setMeetings(res.data.meetings);
       } catch (err) {
         console.log(err);

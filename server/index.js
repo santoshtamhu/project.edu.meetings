@@ -4,11 +4,11 @@ const coursesRoute = require("./routers/courses");
 const cors = require("cors");
 const handleError = require("./middlewares/handleError");
 const uploadsRoute = require("./routers/uploads");
+const adminRouter = require("./routers/admin");
 require("dotenv").config();
-const API_PORT = process.env.API_PORT;
+const port = process.env.API_PORT;
 
 const app = express();
-const port = API_PORT;
 
 // database
 require("./config/database");
@@ -23,6 +23,7 @@ app.use(express.json());
 app.use("/api/meetings", meetingsRoute);
 app.use("/api/courses", coursesRoute);
 app.use("/api/uploads", uploadsRoute);
+app.use("/api/admin", adminRouter);
 
 //Error handling middleware
 app.use(handleError);

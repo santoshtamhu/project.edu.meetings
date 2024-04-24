@@ -112,7 +112,7 @@ const createMeeting = async (req, res, next) => {
       DECEMBER: 12,
     };
 
-    meeting.month = monthNumbers[meeting.month.toUpperCase()]; // converting month names to integers
+    meeting.month = monthNumbers[meeting.month?.toUpperCase()]; // converting month names to integers
 
     if (!req.file) {
       return res.status(400).send("please upload an image file!");

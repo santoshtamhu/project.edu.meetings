@@ -18,24 +18,21 @@
 }
 
 .slick-slide > div {
-  margin: 0 20px;
+  margin: 0 8px;
 }
 
 .slick-list {
-  margin: 0 -20px; /* Counteract the extra margin on the edges */
+  margin: 0 -8px; /* Counteract the extra margin on the edges */
 }
 
-/* .masonry {
-  width: 1024px;
-  margin: 0px auto;
-  margin-top: 50px;
-  columns: 3;
-  column-gap: 10px;
-}
+/* CustomArrows.css */
 
-.box {
-  width: auto;
-  margin-bottom: 10px;
-  break-inside: avoid;
+/* Styling for the arrow div */
+.slick-arrow {
+  width: 40px; /* Adjust width as needed */
+  height: 40px; /* Adjust height as needed */
+  border-radius: 50%; /* Rounded corners */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
- */

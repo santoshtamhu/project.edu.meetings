@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import Course from "./common/Course";
 import axios from "axios";
+import { API_URL } from "../constants/domain";
 
 export default function PopularCourses() {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/courses")
+      .get(API_URL + "/courses")
       .then((res) => {
         setCourses(res.data);
       })
@@ -22,29 +23,25 @@ export default function PopularCourses() {
     infinite: true,
     speed: 500,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 2000,
+    arrows: false,
     responsive: [
       {
         breakpoint: 10000,
         settings: {
           slidesToShow: 4,
-          arrows: true,
-          /*  nextArrow: <CustomNextArrow />,
-          prevArrow: <CustomPrevArrow />, */
         },
       },
       {
         breakpoint: 1022,
         settings: {
           slidesToShow: 2,
-          arrows: false,
         },
       },
       {
         breakpoint: 638,
         settings: {
           slidesToShow: 1,
-          arrows: false,
         },
       },
     ],
