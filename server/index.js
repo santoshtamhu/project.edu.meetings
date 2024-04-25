@@ -6,8 +6,6 @@ const handleError = require("./middlewares/handleError");
 const uploadsRoute = require("./routers/uploads");
 const adminRouter = require("./routers/admin");
 const Course = require("./models/course");
-require("dotenv").config();
-const port = process.env.API_PORT;
 
 const app = express();
 
@@ -39,7 +37,7 @@ app.use("/api/admin", adminRouter);
 app.use(handleError);
 
 if (port) {
-  app.listen(port, () => {
+  app.listen(8000, () => {
     console.log(`Server running on port ${port}`);
   });
 }
