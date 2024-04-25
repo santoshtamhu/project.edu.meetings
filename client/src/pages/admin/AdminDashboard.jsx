@@ -1,7 +1,17 @@
-import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 export default function AdminDashboard() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("edu_admin_token");
+
+    if (!token) {
+      // Redirect to login if token is not present
+      navigate("/admin");
+    }
+  }, [navigate]);
   return (
     <>
       <div>

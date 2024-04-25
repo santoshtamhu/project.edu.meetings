@@ -20,10 +20,10 @@ export default function Admin() {
       const token = response.data.token;
 
       // Store token in local storage
-      localStorage.setItem("access_token", token);
+      localStorage.setItem("edu_admin_token", token);
 
       setMessage("Login successful");
-      navigate("/admin/dashboard");
+      navigate("/admin/dashboard/meetings");
     } catch (error) {
       setMessage("Invalid credentials");
       console.error(error);

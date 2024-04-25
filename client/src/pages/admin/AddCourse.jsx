@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { API_URL } from "../../constants/domain";
 import axios from "axios";
 
@@ -6,12 +6,20 @@ let initialValue = {
   title: "",
   price: "",
   description: "",
-  image: "",
+  image: null,
   rating: "",
 };
 export default function AddCourse() {
   const [data, setData] = useState(initialValue);
   const [message, setMessage] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value, type, files } = e.target;
+    setData({
+      ...data,
+      [name]: type === "file" ? files[0] : value,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,13 +43,18 @@ export default function AddCourse() {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
-    setData({
-      ...data,
-      [name]: type === "file" ? files[0] : value,
-    });
-  };
+  // Message will disappear after 3 seconds (3000 milliseconds)
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        setMessage("");
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [message]);
   return (
     <div className="m-8">
       <h1 className="text-5xl mb-5 font-semibold">Add New Course</h1>
@@ -116,7 +129,7 @@ export default function AddCourse() {
           </div>
 
           <button type="submit" className="mr-4 btn w-52">
-            Add Meeting
+            Add Course
           </button>
           {message && <span className="mt-4 text-red-500">{message}</span>}
         </form>

@@ -30,6 +30,19 @@ export default function AdminCourses() {
     }
   };
 
+  // Message will disappear after 3 seconds (3000 milliseconds)
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        setMessage("");
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [message]);
+
   return (
     <div className="m-8">
       <div className="text-3xl font-semibold mb-8">All Courses</div>

@@ -102,7 +102,7 @@ export default function Navbar() {
         <menu
           className={`${
             isOpen ? "block" : "hidden"
-          } absolute container sm:smContainer bg-white top-[42px]`}
+          } absolute container sm:smContainer md:mdContainer md:top-24 bg-white top-[42px]`}
         >
           <ul>
             <li className="border-t w-full h-12 flex uppercase items-center justify-center text-[14px] font-medium tracking-widest border-slate-200">

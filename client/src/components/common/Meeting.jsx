@@ -24,7 +24,6 @@ export default function Meeting({ meeting }) {
   const shortMonth = month.slice(0, 3);
 
   const imageUrl = API_URL + meeting.image?.path;
-  console.log(imageUrl);
   return (
     <div className="rounded-3xl h-full overflow-hidden ">
       <div className="relative">

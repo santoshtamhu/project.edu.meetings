@@ -96,6 +96,7 @@ export default function Meetings() {
             }`}
             onClick={() => {
               setCurrentPage((prev) => prev - 1);
+              window.scrollTo(0, 400);
             }}
           >
             &lt; {/* prev arrow */}
@@ -111,6 +112,7 @@ export default function Meetings() {
                 key={pageNumber}
                 onClick={() => {
                   setCurrentPage(pageNumber);
+                  window.scrollTo(0, 400);
                 }}
               >
                 {pageNumber}
@@ -125,6 +127,7 @@ export default function Meetings() {
             }`}
             onClick={() => {
               setCurrentPage((prev) => prev + 1);
+              window.scrollTo(0, 400);
             }}
           >
             &gt; {/* next arrow */}
