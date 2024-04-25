@@ -26,7 +26,7 @@ app.get("/api/test", (req, res) =>
 
 app.get("/api/testmeetings", (req, res) => {
   const meeting = Meeting.find({});
-  res.send(meeting);
+  res.json(meeting);
 });
 
 //Routes
