@@ -2,7 +2,10 @@ import { MdOutlinePlayCircle } from "react-icons/md";
 
 export default function QuickFacts() {
   return (
-    <div className="bg-[url('bg-image/facts-bg.jpg')] mt-32 py-28 bg-center bg-cover bg-fixed">
+    <div
+      style={{ backgroundImage: "url('bg-image/facts-bg.jpg')" }}
+      className=" mt-32 py-28 bg-center bg-cover bg-fixed"
+    >
       <div className="container sm:smContainer md:mdContainer lg:lgContainer xl:xlContainer 2xl:xxlContainer text-white">
         <div className="lg:flex lg:gap-20 lg:items-center">
           <div className="lg:flex-1">
