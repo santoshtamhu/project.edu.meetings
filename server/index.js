@@ -18,9 +18,7 @@ app.use(cors());
 //req.body
 app.use(express.json());
 
-app.get("/api/test", (req, res) =>
-  res.status(200).json({ message: "hello world" })
-);
+app.get("/", (req, res) => res.status(200).json({ message: "hello world" }));
 
 app.get("/api/testcourses", async (req, res) => {
   const courses = await Course.find({});
@@ -36,10 +34,8 @@ app.use("/api/admin", adminRouter);
 //Error handling middleware
 app.use(handleError);
 
-if (port) {
-  app.listen(8000, () => {
-    console.log(`Server running on port ${port}`);
-  });
-}
+app.listen(8000, () => {
+  console.log(`Server running on port ${port}`);
+});
 
 module.exports = app;
