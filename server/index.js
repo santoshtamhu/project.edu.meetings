@@ -30,6 +30,10 @@ app.use("/api/admin", adminRouter);
 //Error handling middleware
 app.use(handleError);
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+if (port) {
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+}
+
+module.exports = app;
