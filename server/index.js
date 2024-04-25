@@ -22,11 +22,6 @@ app.use(express.json());
 
 app.get("/", (req, res) => res.status(200).json({ message: "hello world" }));
 
-app.get("/api/testcourses", async (req, res) => {
-  const courses = await Course.find({});
-  res.json(courses);
-});
-
 //Routes
 app.use("/api/meetings", meetingsRoute);
 app.use("/api/courses", coursesRoute);
