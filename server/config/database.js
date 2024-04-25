@@ -1,5 +1,4 @@
 const { default: mongoose } = require("mongoose");
-
-mongoose
-  .connect("mongodb://127.0.0.1:27017/project-edu-meetings")
-  .then(() => console.log("DB Connected!"));
+dotenv.config();
+const MONGO = process.env.MONGODB_URI;
+mongoose.connect(MONGO).then(() => console.log("DB Connected!"));
