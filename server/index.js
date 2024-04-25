@@ -6,7 +6,7 @@ const handleError = require("./middlewares/handleError");
 const uploadsRoute = require("./routers/uploads");
 const adminRouter = require("./routers/admin");
 const Course = require("./models/course");
-
+const port = 8000;
 const app = express();
 
 // database
@@ -34,7 +34,7 @@ app.use("/api/admin", adminRouter);
 //Error handling middleware
 app.use(handleError);
 
-app.listen(8000, () => {
+app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
