@@ -21,7 +21,7 @@ const CourseSchema = new Schema(
       max: 5,
     },
     image: {
-      path: String,
+      url: String,
     },
   },
   {

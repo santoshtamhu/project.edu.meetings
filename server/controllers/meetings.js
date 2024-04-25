@@ -1,6 +1,7 @@
 const Meeting = require("../models/meeting");
 const path = require("path");
 const fs = require("fs");
+const cloudinary = require("../utils/cloudinary");
 
 // FETCH MEETINGS
 
@@ -95,6 +96,8 @@ const fetchSingleMeeting = async (req, res, next) => {
 
 const createMeeting = async (req, res, next) => {
   try {
+    const result = await cloudinary.uploader.upload(req.file.path);
+
     let meeting = req.body;
 
     const monthNumbers = {
@@ -118,12 +121,10 @@ const createMeeting = async (req, res, next) => {
       return res.status(400).send("please upload an image file!");
     }
 
-    let path = req.file.path.replaceAll("\\", "/");
-
     meeting = await Meeting.create({
       ...meeting,
       image: {
-        path: "/" + path,
+        url: result.secure_url,
       },
     });
     res.json(meeting);

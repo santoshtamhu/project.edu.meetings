@@ -1,5 +1,6 @@
 const { default: mongoose } = require("mongoose");
 const Course = require("../models/course");
+const cloudinary = require("../utils/cloudinary");
 
 // FETCH COURSE
 const fetchCourses = async (req, res) => {
@@ -10,14 +11,11 @@ const fetchCourses = async (req, res) => {
 // CREATE COURSE
 const createCourse = async (req, res, next) => {
   try {
-    let path = "";
-    if (req.file) {
-      path = req.file.path.replaceAll("\\", "/");
-    }
+    const result = await cloudinary.uploader.upload(req.file.path);
     const course = await Course.create({
       ...req.body,
       image: {
-        path: "/" + path,
+        url: result.secure_url,
       },
     });
     res.json(course);

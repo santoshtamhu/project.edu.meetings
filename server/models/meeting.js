@@ -30,10 +30,7 @@ const MeetingSchema = new Schema(
       type: Boolean,
     },
     image: {
-      path: {
-        type: String,
-        required: true,
-      },
+      url: String,
     },
   },
   {
