@@ -15,7 +15,7 @@ router.get("/", fetchMeetings);
 
 router.get("/:_id", handleObjectIdValidation(Meeting), fetchSingleMeeting);
 
-router.post("/", upload.single("image"), createMeeting);
+router.post("/", checkValidationSchema, upload.single("image"), createMeeting);
 
 router.delete("/:_id", handleObjectIdValidation(Meeting), deleteMeeting);
 

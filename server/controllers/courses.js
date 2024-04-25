@@ -15,7 +15,7 @@ const createCourse = async (req, res, next) => {
     const course = await Course.create({
       ...req.body,
       image: {
-        url: result.secure_url,
+        url: result ? result.secure_url : "",
       },
     });
     res.json(course);
@@ -28,10 +28,7 @@ const createCourse = async (req, res, next) => {
 // DELETE COURSE
 const deleteCourse = async (req, res, next) => {
   try {
-    let course = await Course.findByIdAndDelete(req.params._id);
-    if (course.image.path) {
-      fs.unlinkSync(path.resolve() + course.image.path); // also delete the image from server
-    }
+    await Course.findByIdAndDelete(req.params._id);
     res.send("course deleted successfully!");
   } catch (err) {
     console.log(err.message);

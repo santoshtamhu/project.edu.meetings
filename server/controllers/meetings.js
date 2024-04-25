@@ -1,6 +1,4 @@
 const Meeting = require("../models/meeting");
-const path = require("path");
-const fs = require("fs");
 const cloudinary = require("../utils/cloudinary");
 
 // FETCH MEETINGS
@@ -92,11 +90,13 @@ const fetchSingleMeeting = async (req, res, next) => {
   }
 };
 
-// CREATE A MEETING
-
+// CREATE MEETING
 const createMeeting = async (req, res, next) => {
   try {
-    const result = await cloudinary.uploader.upload(req.file.path);
+    let result;
+    if (req.file) {
+      result = await cloudinary.uploader.upload(req.file.path);
+    }
 
     let meeting = req.body;
 
@@ -117,16 +117,13 @@ const createMeeting = async (req, res, next) => {
 
     meeting.month = monthNumbers[meeting.month?.toUpperCase()]; // converting month names to integers
 
-    if (!req.file) {
-      return res.status(400).send("please upload an image file!");
-    }
-
     meeting = await Meeting.create({
       ...meeting,
       image: {
-        url: result.secure_url,
+        url: result ? result.secure_url : "",
       },
     });
+
     res.json(meeting);
   } catch (err) {
     console.log([err.message, err.error]);
@@ -138,10 +135,7 @@ const createMeeting = async (req, res, next) => {
 
 const deleteMeeting = async (req, res, next) => {
   try {
-    let meeting = await Meeting.findByIdAndDelete(req.params._id);
-    if (meeting.image.path) {
-      fs.unlinkSync(path.resolve() + meeting.image.path); //also delete the image from server
-    }
+    await Meeting.findByIdAndDelete(req.params._id);
     res.send("meeting deleted successfully!");
   } catch (err) {
     console.log(err.message);
