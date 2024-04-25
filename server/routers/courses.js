@@ -12,7 +12,7 @@ const Course = require("../models/course");
 const router = express.Router();
 
 router.get("/", fetchCourses);
-router.post("/", upload.single("image"), checkValidationSchema, createCourse);
+router.post("/", checkValidationSchema, upload.single("image"), createCourse);
 router.delete("/:_id", handleObjectIdValidation(Course), deleteCourse);
 
 module.exports = router;
