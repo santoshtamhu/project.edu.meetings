@@ -34,7 +34,10 @@ export default function QuickFacts() {
               </div>
             </div>
           </div>
-          <div className="bg-[url('thumbnail/video-item-bg.jpg')] mt-10 lg:mt-0 flex justify-center items-center bg-cover w-full h-[396px] bg-center rounded-2xl lg:flex-1">
+          <div
+            style={{ backgroundImage: "url('thumbnail/video-item-bg.jpg')" }}
+            className=" mt-10 lg:mt-0 flex justify-center items-center bg-cover w-full h-[396px] bg-center rounded-2xl lg:flex-1"
+          >
             <span className="text-7xl">
               <a
                 href="https://www.youtube.com/watch?v=HndV87XpkWg"

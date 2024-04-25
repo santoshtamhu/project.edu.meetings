@@ -6,6 +6,8 @@ export default function Course({ course }) {
   const imageUrl = API_URL + course.image?.path;
   const { rating } = course;
 
+  console.log(imageUrl);
+
   let stars = [];
 
   for (let i = 1; i <= rating; i++) {
