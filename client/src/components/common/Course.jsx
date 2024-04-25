@@ -1,12 +1,9 @@
 import React from "react";
-import { API_URL } from "../../constants/domain";
 import { IoStar } from "react-icons/io5";
 
 export default function Course({ course }) {
-  const imageUrl = API_URL + course.image?.path;
+  const imageUrl = course.image?.url;
   const { rating } = course;
-
-  console.log(imageUrl);
 
   let stars = [];
 
@@ -18,9 +15,7 @@ export default function Course({ course }) {
     <div>
       <div className="bg-white">
         <img
-          src={
-            course.image?.path ? imageUrl : "assets/images/no-image/noimage.jpg"
-          }
+          src={imageUrl ? imageUrl : "assets/images/no-image/noimage.jpg"}
           alt={`image of ${course.title}`}
           className="w-full h-48 object-cover"
         />

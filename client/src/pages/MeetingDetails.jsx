@@ -40,8 +40,7 @@ export default function MeetingDetails() {
 
   const shortMonth = month ? month.slice(0, 3) : "";
 
-  const imagePath = meeting.image?.path;
-  const imageUrl = API_URL + imagePath;
+  const imageUrl = meeting.image?.url;
   const noImageUrl = "/assets/images/no-image/noimage.jpg";
 
   return (
@@ -56,7 +55,7 @@ export default function MeetingDetails() {
         <div
           className="p-5 sm:h-[185px] md:h-64 lg:h-80 xl:h-[400px] 2xl:h-[466px] bg-center bg-cover"
           style={{
-            backgroundImage: `url(${imagePath ? imageUrl : noImageUrl})`,
+            backgroundImage: `url(${imageUrl ? imageUrl : noImageUrl})`,
           }}
         >
           <div className="flex justify-between">

@@ -1,5 +1,3 @@
-import backgroundVideo from "/backgroundVideo/backgroundVideo.mp4";
-
 export default function Hero() {
   return (
     <div>
@@ -11,7 +9,10 @@ export default function Hero() {
             loop
             className="top-0 left-0 h-screen w-full  object-cover"
           >
-            <source src={backgroundVideo} type="video/mp4" />
+            <source
+              src="https://cdn.pixabay.com/video/2024/04/03/206779_large.mp4"
+              type="video/mp4"
+            />
           </video>
           <div className="w-full h-full top-0  bg-[rgba(31,39,43,0.75)] absolute"></div>
         </div>

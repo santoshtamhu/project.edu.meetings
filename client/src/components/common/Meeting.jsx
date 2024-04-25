@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { API_URL } from "../../constants/domain";
 
 export default function Meeting({ meeting }) {
   let { month } = meeting;
@@ -23,17 +22,13 @@ export default function Meeting({ meeting }) {
   month = monthNames[month];
   const shortMonth = month.slice(0, 3);
 
-  const imageUrl = API_URL + meeting.image?.path;
+  const imageUrl = meeting.image?.url;
   return (
     <div className="rounded-3xl h-full overflow-hidden ">
       <div className="relative">
         <Link to={`/meetings/${meeting._id}`}>
           <img
-            src={
-              meeting.image?.path
-                ? imageUrl
-                : "assets/images/no-image/noimage.jpg"
-            }
+            src={imageUrl ? imageUrl : "assets/images/no-image/noimage.jpg"}
             alt=""
             className="w-full h-64 object-cover"
           />
