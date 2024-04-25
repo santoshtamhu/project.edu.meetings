@@ -19,6 +19,10 @@ app.use(cors());
 //req.body
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("hellow world");
+});
+
 //Routes
 app.use("/api/meetings", meetingsRoute);
 app.use("/api/courses", coursesRoute);
