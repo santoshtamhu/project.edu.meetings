@@ -5,8 +5,7 @@ const cors = require("cors");
 const handleError = require("./middlewares/handleError");
 const uploadsRoute = require("./routers/uploads");
 const adminRouter = require("./routers/admin");
-const Course = require("./models/course");
-dotenv.config();
+require("dotenv").config();
 const app = express();
 
 const PORT = process.env.PORT;
