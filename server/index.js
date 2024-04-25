@@ -19,9 +19,7 @@ app.use(cors());
 //req.body
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("hellow world");
-});
+app.get((req, res) => res.status(200).json({ message: "hello world" }));
 
 //Routes
 app.use("/api/meetings", meetingsRoute);
