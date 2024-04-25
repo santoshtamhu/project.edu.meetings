@@ -5,6 +5,7 @@ const cors = require("cors");
 const handleError = require("./middlewares/handleError");
 const uploadsRoute = require("./routers/uploads");
 const adminRouter = require("./routers/admin");
+const Course = require("./models/course");
 require("dotenv").config();
 const app = express();
 
@@ -18,6 +19,13 @@ app.use(cors());
 
 //req.body
 app.use(express.json());
+
+app.get("/", (req, res) => res.status(200).json({ message: "hello world" }));
+
+app.get("/api/testcourses", async (req, res) => {
+  const courses = await Course.find({});
+  res.json(courses);
+});
 
 //Routes
 app.use("/api/meetings", meetingsRoute);
