@@ -79,40 +79,38 @@ export default function Navbar() {
       // Set target position based on the section and screen size
       if (section == "cta") {
         targetPosition = sWidth
-          ? 3600
-          : smWidth
-          ? 3400
-          : mdWidth
           ? 3300
+          : smWidth
+          ? 3100
+          : mdWidth
+          ? 3100
           : lgWidth
-          ? 2250
+          ? 2000
           : xlWidth
-          ? 2200
-          : 2150;
+          ? 1900
+          : 2050;
       } else if (section == "courses") {
         targetPosition = sWidth
-          ? 5200
+          ? 5000
           : smWidth
-          ? 4700
+          ? 4450
           : mdWidth
-          ? 4500
+          ? 4300
           : lgWidth
-          ? 3000
+          ? 2880
           : xlWidth
-          ? 3000
-          : 2900;
+          ? 2800
+          : 2800;
       } else {
         targetPosition = sWidth
-          ? 7400
+          ? 7200
           : smWidth
-          ? 6900
+          ? 6600
           : mdWidth
-          ? 6650
+          ? 6420
           : lgWidth
-          ? 4550
-          : xlWidth
-          ? 4450
-          : 4300;
+          ? 4300
+          : 4200;
       }
 
       window.scrollTo({
