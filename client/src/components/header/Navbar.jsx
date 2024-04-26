@@ -64,17 +64,57 @@ export default function Navbar() {
   }, [location.pathname]);
 
   // Smooth Scrolling
-  const scrollTo = (scrollTo) => {
+  const scrollTo = (section) => {
     navigate("/");
+    const screenWidth = window.innerWidth;
+
+    const sWidth = screenWidth < 640;
+    const smWidth = screenWidth < 768;
+    const mdWidth = screenWidth < 1024;
+    const lgWidth = screenWidth < 1280;
+    const xlWidth = screenWidth < 1536;
+
     setTimeout(() => {
       let targetPosition = 0;
-      if (scrollTo == "cta") {
-        targetPosition = 2000;
-      } else if (scrollTo == "courses") {
-        targetPosition = 2800;
+      // Set target position based on the section and screen size
+      if (section == "cta") {
+        targetPosition = sWidth
+          ? 3600
+          : smWidth
+          ? 3400
+          : mdWidth
+          ? 3300
+          : lgWidth
+          ? 2250
+          : xlWidth
+          ? 2200
+          : 2150;
+      } else if (section == "courses") {
+        targetPosition = sWidth
+          ? 5200
+          : smWidth
+          ? 4700
+          : mdWidth
+          ? 4500
+          : lgWidth
+          ? 3000
+          : xlWidth
+          ? 3000
+          : 2900;
       } else {
-        targetPosition = 4150;
+        targetPosition = sWidth
+          ? 7400
+          : smWidth
+          ? 6900
+          : mdWidth
+          ? 6650
+          : lgWidth
+          ? 4550
+          : xlWidth
+          ? 4450
+          : 4300;
       }
+
       window.scrollTo({
         top: targetPosition,
         behavior: "smooth",
@@ -125,13 +165,22 @@ export default function Navbar() {
                 meetings
               </NavLink>
             </li>
-            <li className="cta border-t w-full h-12 flex uppercase items-center justify-center text-[14px] font-medium tracking-widest border-slate-200">
+            <li
+              onClick={() => scrollTo("cta")}
+              className="cta border-t w-full h-12 flex uppercase items-center justify-center text-[14px] font-medium tracking-widest border-slate-200"
+            >
               apply now
             </li>
-            <li className="border-t w-full h-12 flex uppercase items-center justify-center text-[14px] font-medium tracking-widest border-slate-200">
+            <li
+              onClick={() => scrollTo("courses")}
+              className="border-t w-full h-12 flex uppercase items-center justify-center text-[14px] font-medium tracking-widest border-slate-200"
+            >
               courses
             </li>
-            <li className="border-t w-full h-12 flex uppercase items-center justify-center text-[14px] font-medium tracking-widest border-slate-200">
+            <li
+              onClick={() => scrollTo("contact us")}
+              className="border-t w-full h-12 flex uppercase items-center justify-center text-[14px] font-medium tracking-widest border-slate-200"
+            >
               contact us
             </li>
           </ul>
